@@ -98,3 +98,37 @@ by some other criteria:
     51      Tue Aug 25 03:00:00 2020 a ads
     52      Thu Mar 25 03:00:00 2021 a ads
 ```
+
+
+# License
+
+GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl.html>
+
+Unless otherwise stated by a different license notice in a particular file,
+all files in the `atat' project are made available under the GNU GPL version
+2, or (at your option) any later version.
+
+See the [COPYING] file for the full license.
+
+Copyright (C) 2020 Alan D. Salewski <salewski@att.net>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+
+[BUGS]:         https://github.com/salewski/atat/blob/master/BUGS
+[COPYING]:      https://github.com/salewski/atat/blob/master/COPYING
+[HACKING]:      https://github.com/salewski/atat/blob/master/HACKING
+[INSTALL]:      https://github.com/salewski/atat/blob/master/INSTALL
+[NEWS]:         https://github.com/salewski/atat/blob/master/NEWS
