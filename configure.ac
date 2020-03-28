@@ -36,6 +36,11 @@ if test -z "$CAT"; then
     AC_MSG_ERROR([cat not found])
 fi
 
+AC_PATH_PROG([XARGS], [xargs])
+if test -z "$XARGS"; then
+    AC_MSG_ERROR([xargs not found])
+fi
+
 
 # pod2man comes with Perl, but it's not reliable to just check for the
 # presence of the 'perl' program (distribution packaging may provide it in an
@@ -169,6 +174,7 @@ do_subst_command='do_subst = sed \
   -e '"'"'s,[@]POD2HTML[@],$(POD2HTML),g'"'"' \
   \
   -e '"'"'s,[@]CAT[@],$(CAT),g'"'"' \
+  -e '"'"'s,[@]XARGS[@],$(XARGS),g'"'"' \
 '
 ]
 AC_SUBST([do_subst_command])
@@ -271,6 +277,7 @@ printf "                  Manual pages: %s\n" "`__expand_fully man5htmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man7htmldir`"
 printf "\n"
 printf "                         SHELL: %s\n" "`__expand_fully SHELL`"
+printf "                         XARGS: %s\n" "`__expand_fully XARGS`"
 printf "\n"
 
 

@@ -47,6 +47,7 @@ readonly gl_const_release="${ATAT_VERSION}  (built: ${gl_const_build_date})"
 # (with hyphen chars changed to underscores).
 
 CAT_PROG="${CAT:-@CAT@}"
+XARGS_PROG="${XARGS:-@XARGS@}"
 
 
 f_print_help () {
@@ -135,4 +136,5 @@ EOF
 # Note that we pass the ${PROG} name to the shell merely so it will be used to
 # set $0. That allows us to avoid needing to "subtract one" with our field
 # numbers.
-at -l | xargs -r -L 1 sh -c 'echo $1 $(date --date "$2, $4 $3 $6 $5" "+%F %T") $7 $8' atat
+at -l \
+| "${XARGS_PROG}" -r -L 1 sh -c 'echo $1 $(date --date "$2, $4 $3 $6 $5" "+%F %T") $7 $8' atat
