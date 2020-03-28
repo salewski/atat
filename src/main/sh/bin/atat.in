@@ -1,4 +1,4 @@
-#!/bin/sh -
+#!@SHELL@ -
 # SPDX-License-Identifier: GPL-2.0-or-later
 #
 # @configure_input@
@@ -48,6 +48,19 @@ readonly gl_const_release="${ATAT_VERSION}  (built: ${gl_const_build_date})"
 
 CAT_PROG="${CAT:-@CAT@}"
 XARGS_PROG="${XARGS:-@XARGS@}"
+
+# CAREFUL: The POSIX(ish) shell found at configure time (based (conditionally)
+#          on autoconf's CONFIG_SHELL) gets set to configure- and build-time
+#          variables named 'SHELL'. At runtime, however, a variable by that
+#          name is used by various programs (e.g., GNU screen) for other
+#          purposes; if that variable is set, it is very likely not the same
+#          value found at configure time. Furthermore, we would not want to
+#          try to hijack it for our purposes here. Instead, we're using the
+#          name 'SH' as the user-settable runtime variable to be overridden
+#          (if needed), and from the user's perspective that name is (mainly)
+#          consistent with what we do for other programs, as well (use the
+#          basename of the program, uppercased).
+SH_PROG="${SH:-@SHELL@}"
 
 
 f_print_help () {
@@ -137,4 +150,4 @@ EOF
 # set $0. That allows us to avoid needing to "subtract one" with our field
 # numbers.
 at -l \
-| "${XARGS_PROG}" -r -L 1 sh -c 'echo $1 $(date --date "$2, $4 $3 $6 $5" "+%F %T") $7 $8' atat
+| "${XARGS_PROG}" -r -L 1 "${SH_PROG}" -c 'echo $1 $(date --date "$2, $4 $3 $6 $5" "+%F %T") $7 $8' atat
