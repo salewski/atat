@@ -46,6 +46,7 @@ readonly gl_const_release="${ATAT_VERSION}  (built: ${gl_const_build_date})"
 # particular tool by setting an environment variable named after the tool
 # (with hyphen chars changed to underscores).
 
+AT_PROG="${AT:-@AT@}"
 CAT_PROG="${CAT:-@CAT@}"
 XARGS_PROG="${XARGS:-@XARGS@}"
 
@@ -149,5 +150,5 @@ EOF
 # Note that we pass the ${PROG} name to the shell merely so it will be used to
 # set $0. That allows us to avoid needing to "subtract one" with our field
 # numbers.
-at -l \
+"${AT_PROG}" -l \
 | "${XARGS_PROG}" -r -L 1 "${SH_PROG}" -c 'echo $1 $(date --date "$2, $4 $3 $6 $5" "+%F %T") $7 $8' atat

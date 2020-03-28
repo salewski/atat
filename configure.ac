@@ -31,6 +31,25 @@ dnl +------------------------+
 dnl makes $(LN_S) available in our Makefile.am files
 AC_PROG_LN_S
 
+# The POSIX/SUS at(1) command:
+#     https://pubs.opengroup.org/onlinepubs/9699919799/utilities/at.html
+#
+# At the time of writing (2020-03), the 'at' program used on Debian systems
+# (and presumably on derived systems) is that which was originally written and
+# packaged by Thomas Koenig, and currently maintained by Jose M. Calhariz. It
+# can be found here:
+#
+#     http://software.calhariz.com/at/
+#     http://blog.calhariz.com/index.php/tag/at
+#
+# The 'AUTHORS' section of the at(1) man page on OpenBSD, FreeBSD, NetBSD, and
+# Dragonfly BSD all indicate a common lineage with Koenig's implementation.
+#
+AC_PATH_PROG([AT], [at])
+if test -z "$AT"; then
+    AC_MSG_ERROR([at not found])
+fi
+
 AC_PATH_PROG([CAT], [cat])
 if test -z "$CAT"; then
     AC_MSG_ERROR([cat not found])
@@ -181,6 +200,7 @@ do_subst_command='do_subst = sed \
   -e '"'"'s,[@]POD2MAN[@],$(POD2MAN),g'"'"' \
   -e '"'"'s,[@]POD2HTML[@],$(POD2HTML),g'"'"' \
   \
+  -e '"'"'s,[@]AT[@],$(AT),g'"'"'   \
   -e '"'"'s,[@]CAT[@],$(CAT),g'"'"' \
   -e '"'"'s,[@]XARGS[@],$(XARGS),g'"'"' \
 '
@@ -285,6 +305,8 @@ printf "                  Manual pages: %s\n" "`__expand_fully man5htmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man7htmldir`"
 printf "\n"
 printf "                         SHELL: %s\n" "`__expand_fully SHELL`"
+printf "                            AT: %s\n" "`__expand_fully AT`"
+printf "                           CAT: %s\n" "`__expand_fully CAT`"
 printf "                         XARGS: %s\n" "`__expand_fully XARGS`"
 printf "\n"
 
