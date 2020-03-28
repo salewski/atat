@@ -10,7 +10,10 @@ In particular, it allows the `at(1)` jobs listing to be sorted in the order in
 which the jobs will be executed, which is something that is not easily done by
 default output.
 
-## Example:
+## Example
+
+The default output of `atat(1)` (shown below) sorts the `at(1)` jobs by the
+order in which they will be executed, and then by job number.
 ```sh
     $ atat
     48 2020-04-24 03:00:00 a ads
@@ -31,9 +34,6 @@ default output.
     46 2021-07-25 03:00:00 a ads
     42 2021-08-25 03:00:00 a ads
 ```
-
-The default output of `atat(1)` (shown above) sorts the `at(1)` jobs by the
-order in which they will be executed, and then by job number.
 
 Note that (unlike the default output of `at(1)`) the `atat(1)` output is
 easily sorted by other criteria, as well, though. For example, to sort by
