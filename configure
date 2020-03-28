@@ -2596,6 +2596,12 @@ man7htmldir="\${pkghtmldir}/man/man7"
 ## which we have to provide our own variation of. We also omit
 ## 'builddir' (which is always '.'); in this last case, what you
 ## probably want instead is 'abs_builddir', which we provide.
+##
+## The SHELL variable is somewhat special in that it is set based on
+## CONFIG_SHELL (see the documentation for AS_INIT in the autoconf manual). We
+## use it directly in shell scripts that should be invoked by something that
+## looks like a capable POSIX-ish shell (that is not necessarily bash, ksh,
+## etc.).
 
 do_subst_command='do_subst = sed \
   -e '"'"'s,[@]PACKAGE[@],$(PACKAGE),g'"'"' \
@@ -2603,6 +2609,8 @@ do_subst_command='do_subst = sed \
   -e '"'"'s,[@]PATH_SEPARATOR[@],$(PATH_SEPARATOR),g'"'"' \
   -e '"'"'s,[@]configure_input[@],Generated from $@.in; do not edit by hand.,g'"'"' \
   -e "s,[@]BUILD_DATE[@],$$(date '"'"'+%Y-%m-%d %H:%M:%S'"'"'),g" \
+  \
+  -e '"'"'s,[@]SHELL[@],$(SHELL),g'"'"' \
   \
   -e '"'"'s,[@]bindir[@],$(bindir),g'"'"' \
   -e '"'"'s,[@]datadir[@],$(datadir),g'"'"' \
