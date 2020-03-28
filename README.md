@@ -2,7 +2,7 @@
 
 The `atat` project provides a simple script that wraps the `at(1)` command to
 pretty-print the output of:
-```
+```sh
     $ at -l
 ```
 
@@ -11,7 +11,7 @@ which the jobs will be executed, which is something that is not easily done by
 default output.
 
 ## Example:
-```
+```sh
     $ atat
     48 2020-04-24 03:00:00 a ads
     47 2020-05-25 03:00:00 a ads
@@ -39,7 +39,7 @@ Note that (unlike the default output of `at(1)`) the `atat(1)` output is
 easily sorted by other criteria, as well, though. For example, to sort by
 queue name, then by user, then by job sequence, then by job number one could
 do this:
-```
+```sh
     $ atat | sort -k4,4 -k5,5 -k2,2 -k3,3 -k1,1
 ```
 
@@ -49,7 +49,7 @@ The output of the `at -l` command is not sorted by job execution sequence, and
 the default date and time output it produces is difficult to work with.
 
 For example, consider the default output of `at -l` (a.k.a. `atq(1)`):
-```
+```sh
     $ at -l
     39      Wed Jun 24 03:00:00 2020 a ads
     37      Sun Dec 20 03:00:00 2020 a ads
@@ -78,7 +78,7 @@ jobs, and by quick inspection the lowest and highest job numbers can be
 determined. However, note that the sequence in which the jobs will be executed
 is not easily discernible, and if we are in for some tedium if we want to sort
 by some other criteria:
-```
+```sh
     $ at -l | sort -k1,1n
     36      Thu Jun 24 03:00:00 2021 a ads
     37      Sun Dec 20 03:00:00 2020 a ads
