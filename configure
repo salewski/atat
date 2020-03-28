@@ -596,6 +596,7 @@ manhtmldir
 pkghtmldir
 POD2HTML
 POD2MAN
+XARGS
 CAT
 LN_S
 DFLT_MAINTAINER
@@ -2406,6 +2407,50 @@ if test -z "$CAT"; then
     as_fn_error $? "cat not found" "$LINENO" 5
 fi
 
+# Extract the first word of "xargs", so it can be a program name with args.
+set dummy xargs; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_XARGS+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $XARGS in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_XARGS="$XARGS" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_XARGS="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+XARGS=$ac_cv_path_XARGS
+if test -n "$XARGS"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $XARGS" >&5
+$as_echo "$XARGS" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+if test -z "$XARGS"; then
+    as_fn_error $? "xargs not found" "$LINENO" 5
+fi
+
 
 # pod2man comes with Perl, but it's not reliable to just check for the
 # presence of the 'perl' program (distribution packaging may provide it in an
@@ -2594,6 +2639,7 @@ do_subst_command='do_subst = sed \
   -e '"'"'s,[@]POD2HTML[@],$(POD2HTML),g'"'"' \
   \
   -e '"'"'s,[@]CAT[@],$(CAT),g'"'"' \
+  -e '"'"'s,[@]XARGS[@],$(XARGS),g'"'"' \
 '
 
 
@@ -3869,6 +3915,7 @@ printf "                  Manual pages: %s\n" "`__expand_fully man5htmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man7htmldir`"
 printf "\n"
 printf "                         SHELL: %s\n" "`__expand_fully SHELL`"
+printf "                         XARGS: %s\n" "`__expand_fully XARGS`"
 printf "\n"
 
 
