@@ -56,6 +56,32 @@
    Compare that with the copyright heading of the file in the earlier 2.11BSD.
 
 
+** NetBSD (1993-12-05) has Koenig at(1) at initial commit for at.c, at.1
+
+   This is the initial scm commit for the file:
+
+   :   src/usr.bin/at/at.c
+
+   in the NetBSD source tree.
+
+       http://cvsweb.netbsd.org/bsdweb.cgi/src/usr.bin/at/at.c?rev=1.1&content-type=text/x-cvsweb-markup&only_with_tag=MAIN
+
+   The scm commit message on the above reads:
+
+   #+BEGING_QUOTE
+   :    Revision 1.1, Sun Dec 5 11:36:38 1993 UTC (26 years, 3 months ago) by cgd
+   :    Branch: MAIN
+   :
+   :    add at, by Thomas Koenig, ig25@rz.uni-karlsruhe.de
+   #+END_QUOTE
+
+   According to this:
+
+       https://www.netbsd.org/people/developers.html
+
+   The 'cgd' author of the commit is Chris Demetriou.
+
+
 * History of 'at' (and friends) on GNU/Linux
 
 ** 1993-07-20: comp.os.linux thread (1 msg): "at and atrun binaries - where to find them"
@@ -397,4 +423,4 @@
 
      b. Is there any relationship between your at(1) command and the at(1)
         command that Ed Carp mentions that he wrote on comp.lang.linux on
-        1993-07-22?
+        1993-07-22? Were they entirely different implementations?
