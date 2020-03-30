@@ -1,0 +1,391 @@
+-*- org -*-
+
+#+STARTUP: hidestars oddeven
+
+HINT: org-mode global cycling: S-TAB
+
+HINT: To show all content (including any drawers), regardless of org-mode
+startup visibility:
+
+:    C-u C-u C-u TAB
+
+[The above assumes the default key binding of TAB to [[elisp:org-cycle][org-cycle]].]
+
+* History of 'at' (and friends) on BSD
+
+** 2.11BSD (circa 1992) has pre-Koenig at(1) command
+
+   The 2BSD source line dates originally from 1979, but 2.11BSD was issued
+   in 1992. This at.c command /is not/ the version written by Thomas Koenig:
+
+       https://minnie.tuhs.org/cgi-bin/utree.pl?file=2.11BSD/src/usr.bin/at/at.c
+
+   Note that the above URL is hosted by The Unix Heritage Society (tuhs.org).
+
+   The copyright notice at the top of the file does not mention anything about
+   AT&T:
+
+   #+BEGIN_SRC c
+   /*
+    * Copyright (c) 1983 Regents of the University of California.
+    * All rights reserved.  The Berkeley software License Agreement
+    * specifies the terms and conditions for redistribution.
+    */
+   #+END_SRC
+
+   Compare that with the copyright heading of the file in 4.4BSD.
+
+
+** 4.4BSD (circa 1993) also has pre-Koenig at(1), now with AT&T tainted copyright note
+
+       https://www.tuhs.org/cgi-bin/utree.pl?file=4.4BSD/usr/src/usr.bin/at/at/at.c
+
+   The copyright notice at the top of the file now mentions AT&T:
+
+   #+BEGIN_SRC c
+   /*-
+    * Copyright (c) 1983, 1993
+    *	The Regents of the University of California.  All rights reserved.
+    *
+    * This module is believed to contain source code proprietary to AT&T.
+    * Use and redistribution is subject to the Berkeley Software License
+    * Agreement and your Software Agreement with AT&T (Western Electric).
+    */
+   #+END_SRC
+
+   Compare that with the copyright heading of the file in the earlier 2.11BSD.
+
+
+* History of 'at' (and friends) on GNU/Linux
+
+** 1993-07-20: comp.os.linux thread (1 msg): "at and atrun binaries - where to find them"
+
+   The thread had only one message, and can be found via Google Groups here:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux/bZ-fLPH3tNM
+
+
+*** [1 of 1] comp.os.linux: 1993-07-20 09:14:46 GMT; Nick Sandru; Subject: at and atrun binaries - where to find them
+
+   : Path: gmd.de!xlink.net!howland.reston.ans.net!wupost!uunet!mcsun!dkuug!uts!cri.dk!csd!ns
+   : Newsgroups: comp.os.linux
+   : From: n...@csd.cri.dk (Nick Sandru)
+   : Subject: at and atrun binaries - where to find them
+   : Message-ID: <CAGHop.3I5@csd.cri.dk>
+   : Followup-To: poster
+   : Keywords: at atrun binaries
+   : Sender: ne...@csd.cri.dk
+   : Reply-To: n...@csd.cri.dk
+   : Organization: Computer Resources International A/S, CASE div.
+   : Date: Tue, 20 Jul 1993 09:14:46 GMT
+   : Lines: 23
+   :
+   : I have just switched over to Linux (SLS distribution) and I need the binaries
+   : for at and atrun. I looked into several FTP sites, but I found only the sources.
+   : The problem is that I cannot install gcc etc. until I get a bigger disk (the
+   : present one has only 44 Mbytes and cca 1/2 of it is occupied by a DOS partition),
+   : so that I have no possiblity to compile the sources. The machine is an AT/386SX-40
+   : with 4 Mbytes RAM. I have replaced its old 286 motherboard last week and I decided
+   : to choose Linux as a replacement for the Minix OS I had used before.
+   :
+   : Otherwise the installation went without problems. I have replaced the smail package
+   : from the distribution with sendmail-5.65+IDA last evening - it took only 30 minutes
+   : to unpack and configure it...
+   :
+   : Thanks,
+   :
+   : Long Haired Nick
+   :
+   : ---
+   : Nick Sandru - System administrator   | e-mail: n...@csd.cri.dk         (office)
+   : Columbus Space Station SDE Project   |         n...@sandes.cri.dk      (home)
+   : Computer Resources International A/S | phone:  +45 45 82 21 00 x2036 (office)
+   : Bregnerodvej 144                     |         +45 47 98 06 27       (home)
+   : DK-3460 Birkerod, Denmark            | fax:    +45 45 82 17 11
+
+
+** 1993-07-21: comp.os.linux thread (2 msgs): "'at' under Linux ?"
+
+   The thread had only two messages, and can be found via Google Groups here:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux/tM6DYgYQ81I
+
+   The question was asked by Achim Bursian, and answered in the affirmative by
+   Ed Carp.
+
+*** [1 of 2] comp.os.linux: 1993-07-21 17:33:46 GMT; Achim Bursian; Subject: 'at' under Linux ?
+
+    : Newsgroups: comp.os.linux
+    : Path: gmd.de!Germany.EU.net!news.dfn.de!xlink.net!pilhuhn!flatlin!subnet.sub.net!hugis!skyjump!achim
+    : From: ac...@skyjump.nbg.sub.org (Achim Bursian)
+    : Subject: 'at' under Linux ?
+    : Organization: ALLM (Achim's little Linux machine)
+    : Date: Wed, 21 Jul 1993 17:33:46 GMT
+    : Message-ID: <1993Jul21.173346.1548@skyjump.nbg.sub.org>
+    : Lines: 9
+    :
+    : Is there no 'at' command under Linux (SLS1.02).
+    : I can't find it.
+    :
+    : Thanks for help (please by mail)
+    :      Achim
+    : --
+    : SNAIL-MAIL:   Achim Bursian  /  Loehestr.17  /  91054 Erlangen  /  Germany
+    :     E-MAIL:   ac...@skyjump.nbg.sub.org
+    :      VOICE:   (+49) 9131 57096                   Blue skies --- dive!
+
+
+*** [2 of 2] comp.os.linux: 1993-07-22 1993 18:02:40 GMT; Ed Carp; Subject: Re: 'at' under Linux ?
+
+    : Newsgroups: comp.os.linux
+    : Path: gmd.de!newsserver.jvnc.net!yale.edu!spool.mu.edu!uwm.edu!cs.utexas.edu!uunet!olivea!sgigate!sgiblab!wetware!khijol!warrior!erc
+    : From: erc@khijol.uucp (Ed Carp)
+    : Subject: Re: 'at' under Linux ?
+    : References: <1993Jul21.173346.1548@skyjump.nbg.sub.org>
+    : Organization: The Center For World Control, Inc.
+    : Date: Thu, 22 Jul 1993 18:02:40 GMT
+    : X-Newsreader: TIN [version 1.1 PL8]
+    : Message-ID: <CAKvGH.7xC@khijol.uucp>
+    : Lines: 12
+    :
+    : Achim Bursian (ac...@skyjump.nbg.sub.org) wrote:
+    :
+    : : Is there no 'at' command under Linux (SLS1.02).
+    : : I can't find it.
+    :
+    : Yes, there is.  I wrote one (along with atrun), someone posted a couple of
+    : patches to it.  I think you can find it over on tsx-11.
+    : --
+    : Ed Carp				e...@apple.com			510/659-9560
+    : "Disagreements are not meant to be challenges.  They are just a different
+    :  reality."  -- Risa D'Angeles
+    : DISCLAIMER:  I work for me ... what's it to you? :)
+
+
+** 1993-08-11: comp.os.linux thread (10 msgs (only 3 relevant)): "[Q] Diffs from SysV specs?"
+
+   This thread had 10 messages in August 1993, but only three of them are
+   relevant to the history of the 'at' command in GNU/Linux:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux/xF3Rc0lZNQY
+
+   A question was asked about a list of programs found Stephen R. Bourne's
+   book "The UNIX System V Environment" that were not included in the SLS 1.03
+   Linux distribution.
+
+   The main useful response simply indicated that the 'at' and 'batch'
+   commands are "Available on sunsite". I think that means the version of the
+   'at' command written by Ed Carp, as mentioned above in his message from
+   [1993-07-22 Thu].
+
+
+*** [1 of 3] comp.os.linux: 1993-08-11 20:03:14 GMT; Petter Reinholdtsen; Subject: [Q] Diffs from SysV specs?
+
+    : Newsgroups: comp.os.linux
+    : Path: gmd.de!xlink.net!howland.reston.ans.net!agate!doc.ic.ac.uk!uknet!pipex!sunic!aun.uninett.no!news.uit.no!petterr
+    : From: pet...@stud.cs.uit.no (Petter Reinholdtsen)
+    : Subject: [Q] Diffs from SysV specs?
+    : Summary: List of commands presumed missign in Linux.
+    : Sender: ne...@news.uit.no (News admin.)
+    : Message-ID: <1993Aug11.200314.21235@news.uit.no>
+    : Date: Wed, 11 Aug 1993 20:03:14 GMT
+    : Organization: University of Tromsoe, Norway
+    : Keywords: Linux, SVID
+    : Followup-To: comp.os.linux
+    : Lines: 33
+    :
+    : Missing commands in SLS 1.02.
+    : Mention by Stephen R. Bourne in "the UNIX System V enviroment"
+    :
+    : adb	- absolute debug
+    : at,batch	- execure commands at a later time
+    : cb	- C program beautifier
+    : crypt	- encode/decode
+    : deroff	- remove nroff, troff, tbl and eqn constructs
+    : diction	- print wordly sentences; thesaurus for diction
+    : eqn,neqn	- typeset mathematics
+    : lint	- a C program checker
+    : lorder	- find ordering relation for an object library
+    : ptx	- permited index
+    : sdb	- symbolic debugger
+    : spell	- find spelling errors
+    : style	- analyze surface characteristics of a document
+    : tabs	- set tabs on a terminal
+    : tbl	- format tables for nroff or troff
+    : troff	- text formatting and typesetting
+    : tsort	- topological sort
+    : units	- conversion program
+    :
+    : Are this missing or unimplemented? Should this be links from
+    : GNU-variants?
+    :
+    : ##>  Petter Reinholdtsen  <##
+    :
+    :
+    : --
+    : ##>  Petter Reinholdtsen <## | pet...@stud.cs.uit.no
+    : Skolegata 7                  | Petter Reinholdtsen at 2:502/802.153
+    : 9008 Tromsoe                 | University of Tromsoe, Norway
+
+
+*** [2 of 3] comp.os.linux: 1993-08-12 01:24:39 GMT; Zack Evans; Subject: Re: [Q] Diffs from SysV specs?
+
+    [I truncated this message after the relevant part]
+
+    : Newsgroups: comp.os.linux
+    : Path: gmd.de!xlink.net!howland.reston.ans.net!agate!doc.ic.ac.uk!uknet!pipex!uunet!mnemosyne.cs.du.edu!nyx!zevans
+    : From: zev...@nyx.cs.du.edu (Zack Evans)
+    : Subject: Re: [Q] Diffs from SysV specs?
+    : Message-ID: <1993Aug12.012439.6256@mnemosyne.cs.du.edu>
+    : Keywords: Linux, SVID
+    : Sender: use...@mnemosyne.cs.du.edu (netnews admin account)
+    : Organization: Nyx, The Spirit Of The Night @ U. of Denver Math/CS dept.
+    : References: <1993Aug11.200314.21235@news.uit.no>
+    : Date: Thu, 12 Aug 93 01:24:39 GMT
+    : Lines: 72
+    :
+    : In article <1993Aug11....@news.uit.no>,
+    : Petter Reinholdtsen <pet...@stud.cs.uit.no> wrote:
+    : >Missing commands in SLS 1.02.
+    : >Mention by Stephen R. Bourne in "the UNIX System V enviroment"
+    :
+    : >adb	- absolute debug
+    :
+    : A subset of gdb perhaps? Same goes for sdb.
+    :
+    : >at,batch	- execure commands at a later time
+    :
+    : Yeah cron is missing from MCC as well...no doubt its out there somewhere.
+
+    [Message truncated]
+
+
+*** [3 of 3] comp.os.linux: 1993-08-12 13:11:38 GMT; Nick Hilliard; Subject: Re: [Q] Diffs from SysV specs?
+
+    [I truncated this message after the relevant part]
+
+    : Newsgroups: comp.os.linux
+    : Path: gmd.de!xlink.net!howland.reston.ans.net!europa.eng.gtefsd.com!uunet!mcsun!ieunet!ieunet!quay.ie!nick
+    : From: ni...@quay.ie (Nick Hilliard)
+    : Subject: Re: [Q] Diffs from SysV specs?
+    : Message-ID: <Aug12.131138.20954@quay.ie>
+    : Date: Thu, 12 Aug 1993 13:11:38 GMT
+    : References: <1993Aug11.200314.21235@news.uit.no>
+    : Organization: Quay Financial Software
+    : X-Newsreader: TIN [version 1.2 PL0]
+    : Lines: 57
+    :
+    : Petter Reinholdtsen (pet...@stud.cs.uit.no) wrote:
+    : : Missing commands in SLS 1.02.
+    : : Mention by Stephen R. Bourne in "the UNIX System V enviroment"
+    :
+    : : adb	- absolute debug
+    :
+    : See gdb?
+    :
+    : : at,batch	- execure commands at a later time
+    :
+    : Available on sunsite.
+
+    [Message truncated]
+
+
+** 1993-08-23: comp.os.linux thread (1 msg): "crontab or at?"
+
+   A thread with a single (zero-content) message:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux/5FZQoyyjdL4
+
+   I'm including this one in my notes here mainly for completeness, with the
+   excuse that the question suggests that the answer was not "just known by
+   everybody" at the time the question (in the subject line) was asked.
+
+*** [1 of 1] comp.os.linux: 1993-08-23 08:50:55 GMT; Sylphid C. Su; Subject: crontab or at?
+
+    : Newsgroups: comp.os.linux
+    : Path: gmd.de!xlink.net!sol.ctr.columbia.edu!howland.reston.ans.net!newsserver.jvnc.net!news.edu.tw!news!sparc4.ncu.edu.tw!halley!sylphid
+    : From: syl...@phy.ncu.edu.tw (Sylphid C. Su)
+    : Subject: crontab or at?
+    : Message-ID: <1993Aug23.085055.1025@sparc4.ncu.edu.tw>
+    : Sender: ne...@sparc4.ncu.edu.tw
+    : Organization: Computer Center Of NCU in R.O.C.
+    : X-Newsreader: TIN [version 1.2 PL1]
+    : Date: Mon, 23 Aug 1993 08:50:55 GMT
+    : Lines: 1
+
+
+
+** 1993-10-17: comp.os.linux.misc thread (1 msg):
+
+   This thread had a one-shot announcement about the release of at-2.3:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux.misc/uk5plLTVLUA
+
+   This documents that Koenig's work on it had been well underway before the
+   middle of October 1993.
+
+*** [1 of 1] comp.os.linux.misc: 1993-10-17 15:04:38 GMT; Thomas Koenig; Subject: at-2.3 released
+
+    : Xref: gmd.de comp.os.linux.announce:1302 comp.os.linux.misc:2968
+    : Path: gmd.de!newsserver.jvnc.net!howland.reston.ans.net!usc!elroy.jpl.nasa.gov!decwrl!concert!samba.oit.unc.edu!bounce-bounce
+    : From: ig...@fg70.rz.uni-karlsruhe.de (Thomas Koenig)
+    : Newsgroups: comp.os.linux.announce,comp.os.linux.misc
+    : Subject: at-2.3 released
+    : Followup-To: comp.os.linux.misc,comp.os.linux.misc
+    : Date: 17 Oct 1993 15:04:38 GMT
+    : Organization: University of Karlsruhe, Germany
+    : Lines: 40
+    : Approved: linux-a...@tc.cornell.edu (Matt Welsh)
+    : Message-ID: <29rmu6$7hf@samba.oit.unc.edu>
+    : Reply-To: ig...@fg70.rz.uni-karlsruhe.de (Thomas Koenig)
+    : NNTP-Posting-Host: calypso.oit.unc.edu
+    : Keywords: at, cron, daemon, scheduling, crond
+    : Originator: mdw@sunSITE
+    :
+    : Hello, world;
+    :
+    : I've just uploaded at 2.3 to sunsite.unc.edu and tsx-11.mit.edu.
+    : It's Yet Another Bugfix release; this time, it fixes the -f option which
+    : was broken in 2.2, and also makes sure that environment variables are
+    : actually exported.
+    :
+    : Again, here's the lsm entry:
+    :
+    : Begin2
+    : Title        = at
+    : Version      = at-2.3
+    : Desc1        = At is an implementation of at(1) for running commands at
+    : Desc2        = a specified time.  It now features times such as
+    : Desc3        = at now + 10 minutes or at tomorrow 3:00 pm.
+    : Author       = Thomas Koenig
+    : AuthorEmail  = ig...@rz.uni-karlsruhe.de
+    : Maintainer   = Thomas Koenig
+    : MaintEmail   = ig...@rz.uni-karlsruhe.de
+    : Site1        = tsx-11.mit.edu
+    : Path1        = /pub/linux/sources/usr.bin/
+    : File1        = at-2.3.tgz
+    : FileSize1    = 22856
+    : Site2        = sunsite.unc.edu
+    : Path2        = /pub/Linux/system/Daemons
+    : File2        = at-2.3.tgz
+    : FileSize2    = 22856
+    : Required1    = crond
+    : CopyPolicy1  = GNU Copyleft
+    : Comment1     = David Parsons (o...@pell.chi.il.us) wrote the time parsing
+    : Comment2     = routines for 2.0; many thanks to him!
+    : Entered      = 16OCT93
+    : EnteredBy    = Thomas Koenig
+    : End
+    :
+    : --
+    : Thomas Kvnig, ig...@rz.uni-karlsruhe.de, ig25@dkauni2.bitnet
+    : The joy of engineering is to find a straight line on a double
+    : logarithmic diagram.
+
+
+* Questions for Thomas König (Thomas Koenig)
+
+  Q: Is there anybody maintaining a version of 'at' (and friends) currently
+     that you would consider to be the authoritative source of your original
+     code?
+
