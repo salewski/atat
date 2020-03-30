@@ -1,15 +1,15 @@
--*- org -*-
+# -*- org -*-
 
 #+STARTUP: hidestars oddeven
 
-HINT: org-mode global cycling: S-TAB
-
-HINT: To show all content (including any drawers), regardless of org-mode
-startup visibility:
-
-:    C-u C-u C-u TAB
-
-[The above assumes the default key binding of TAB to [[elisp:org-cycle][org-cycle]].]
+# HINT: org-mode global cycling: S-TAB
+#
+# HINT: To show all content (including any drawers), regardless of org-mode
+# startup visibility:
+#
+#     C-u C-u C-u TAB
+#
+# [The above assumes the default key binding of TAB to [[elisp:org-cycle][org-cycle]].]
 
 * History of 'at' (and friends) on BSD
 
@@ -389,3 +389,12 @@ startup visibility:
      that you would consider to be the authoritative source of your original
      code?
 
+  Q: What was your original motivation for for writing at(1)?
+
+     a. Was it ever considered to simply use the at(1) command from BSD? If
+        that idea was considered and rejected, why? (Technical reasons?
+        Legal/licensing reasons? Something else?)
+
+     b. Is there any relationship between your at(1) command and the at(1)
+        command that Ed Carp mentions that he wrote on comp.lang.linux on
+        1993-07-22?
