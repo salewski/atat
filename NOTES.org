@@ -13,6 +13,108 @@
 
 * History of 'at' (and friends) on BSD
 
+** Background context: USL lawsuit, plus BSD 1990-1994
+
+   The history of at(1) within the BSD's may or may not have been influenced
+   the lawsuits between Unix System Laboratories (USL) and Berkeley Software
+   Design, Incorporated (BSDI) between 1992 and 1994. Marshall Kirk McKusick's
+   write-up of the events, as published in 1999 by O'Reilly in the book "Open
+   Sources: Voices from the Open Source Revolution" can be read online here:
+
+       https://www.oreilly.com/openbook/opensources/book/kirkmck.html
+
+   The main points of that as it may involve the history of the 'at' command in
+   the BSD's, AFAICT, are:
+
+   1. The timing 1992-1994 spans the time at which the Linux kernel was
+      released to the Internet and had a flurry of "fleshing-out the base
+      system" sort of work that could have been the motivation for one or more
+      developers to seek out an at(1) command for the system (from elsewhere,
+      or to write a new one from scratch).
+
+   2. The pre-Koenig at(1) that was present before the lawsuit in the
+      4.4BSD-Reno distribution from early 1990 (and presumably also in the
+      later Net/2 BSD distribution (which started shipping in June 1991))
+      survived to also be present in the 4.4BSD-Lite released in June 1994
+      (after the lawsuit had been settled earlier that same year, in January).
+
+      At the above URL, McKusick writes of the lawsuit settlement:
+      #+BEGIN_QUOTE
+          The result was that three files were removed from the 18,000 that
+          made up Networking Release 2, and a number of minor changes were made
+          to other files. In addition, the University agreed to add USL
+          copyrights to about 70 files, although those files continued to be
+          freely redistributed.
+      #+END_QUOTE
+
+      From those two pieces of information, it appears to me that at.c was one
+      of those approximately 70 files to which a USL copyright was added. You
+      can compare the two versions by making use of the cross-distribution
+      comparison tool made available by The Unix Heritage Society (TUHS) here:
+
+          https://www.tuhs.org/cgi-bin/utree.pl?file=4.4BSD/usr/src/usr.bin/at/at/at.c
+
+      There's no direct URL for the comparison diff; you'll need to go to the
+      above link to view the 4.4BSD-Lite version of the file, and on that web
+      page use the "Compare this file to the similar file:" drop-down list to
+      select the file from another BSD distribution with which to compare (and
+      then hit the "Side Scroll" button). In this case, choose the entry that
+      is labelled:
+
+      :   "550: 4.3BSD-Reno/src/usr.bin/at/at/at.c"
+
+      The copyright notice at the top of 'at.c' in the earlier (circa 1990)
+      version of the file contains the following statement [line numbers added
+      by the above mentioned web-based comparison tool]:
+
+      #+BEGIN_QUOTE
+      :   0001: /*
+      :   0002:  * Copyright (c) 1983 Regents of the University of California.
+      :   0003:  * All rights reserved.  The Berkeley software License Agreement
+      :   0004:  * specifies the terms and conditions for redistribution.
+      :   0005:  */
+      :   0006:
+      #+END_QUOTE
+
+      The copyright notice at the top of 'at.c' in the later (circa 1994-06)
+      version of the file contains the following statement [line numbers added
+      by the above mentioned web-based comparison tool]:
+
+      #+BEGIN_QUOTE
+      :   0001: /*-
+      :   0002:  * Copyright (c) 1983, 1993
+      :   0003:  *	The Regents of the University of California.  All rights reserved.
+      :   0004:  *
+      :   0005:  * This module is believed to contain source code proprietary to AT&T.
+      :   0006:  * Use and redistribution is subject to the Berkeley Software License
+      :   0007:  * Agreement and your Software Agreement with AT&T (Western Electric).
+      :   0008:  */
+      :   0009:
+      #+END_QUOTE
+
+   3. Entirely separate from the USL/BSDI lawsuit stuff (and before that
+      occurred), Keith Bostic had been out soliciting help from developers all
+      over the Internet to write parts of the system that would make up the
+      Net/2 Distribution. At the above URL, McKusick describes the events thus:
+
+      #+BEGIN_QUOTE
+          He [Bostic] solicited folks to rewrite the Unix utilities from
+          scratch based solely on their published descriptions. Their only
+          compensation would be to have their name listed among the Berkeley
+          contributors next to the name of the utility that they rewrote. The
+          contributions started slowly and were mostly for the trivial
+          utilities. But as the list of completed utilities grew and Bostic
+          continued to hold forth for contributions at public events such as
+          Usenix, the rate of contributions continued to grow. Soon the list
+          crossed one hundred utilities and within 18 months nearly all the
+          important utilities and libraries had been rewritten.
+      #+END_QUOTE
+
+      Could an at(1) rewrite have been considered, and perhaps even underway,
+      due to Bostic's above noted effort? (even though the existing 'at.c' from
+      pre-Net/2 would survive into 4.4BSD-Lite).
+
+
 ** 2.11BSD (circa 1992) has pre-Koenig at(1) command
 
    The 2BSD source line dates originally from 1979, but 2.11BSD was issued
