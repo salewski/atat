@@ -114,6 +114,58 @@
       due to Bostic's above noted effort? (even though the existing 'at.c' from
       pre-Net/2 would survive into 4.4BSD-Lite).
 
+   4. FreeBSD 1.0 was first released in December 1993 (6 months before the 4.4BSD-Lite)
+
+      In the "FreeBSD Handbook", there is an introduction entitled "A Brief
+      History of FreeBSD" written by Jordan K. Hubbard <jkh@FreeBSD.ORG>:
+
+          https://docs.freebsd.org/doc/2.2.6-RELEASE/usr/share/doc/handbook/history.html
+
+      He writes:
+
+      #+BEGIN_QUOTE
+          The first CDROM (and general net-wide) distribution was FreeBSD 1.0,
+          released in December of 1993. This was based on the 4.3BSD-Lite
+          ("Net/2") tape from U.C. Berkeley, with many components also
+          provided by 386BSD and the Free Software Foundation. It was a fairly
+          reasonable success for a first offering, and we followed it with the
+          highly successful FreeBSD 1.1 release in May of 1994.
+      #+END_QUOTE
+
+      Note those dates: the first two releases of FreeBSD (1.0 and 1.1) were
+      both made /before/ the 4.4BSD-Lite release was made in June 1994. That
+      scenario actually created some additional work for the FreeBSD (and
+      NetBSD and 386BSD) folks:
+
+      #+BEGIN_QUOTE
+          Around this time [spring of 1994], some rather unexpected storm
+          clouds formed on the horizon as Novell and U.C. Berkeley settled
+          their long-running lawsuit over the legal status of the Berkeley
+          Net/2 tape. A condition of that settlement was U.C. Berkeley's
+          concession that large parts of Net/2 were "encumbered" code and
+          the property of Novell, who had in turn acquired it from AT&T
+          some time previously. What Berkeley got in return was Novell's
+          "blessing" that the 4.4BSD-Lite release, when it was finally
+          released, would be declared unencumbered and all existing Net/2
+          users would be strongly encouraged to switch. This included
+          FreeBSD, and the project was given until the end of July 1994 to
+          stop shipping its own Net/2 based product. Under the terms of that
+          agreement, the project was allowed one last release before the
+          deadline, that release being FreeBSD 1.1.5.1.
+
+          FreeBSD then set about the arduous task of literally re-inventing
+          itself from a completely new and rather incomplete set of
+          4.4BSD-Lite bits. The "Lite" releases were light in part because
+          Berkeley's CSRG had removed large chunks of code required for
+          actually constructing a bootable running system (due to various
+          legal requirements) and the fact that the Intel port of 4.4 was
+          highly incomplete. It took the project until December of 1994 to
+          make this transition, and in January of 1995 it released
+          FreeBSD 2.0 to the net and on CDROM.
+      #+END_QUOTE
+
+      By the time of the FreeBSD "re-inventing", however, the Koenig version
+      of at(1) was already part of the system.
 
 ** 2.11BSD (circa 1992) has pre-Koenig at(1) command
 
@@ -182,6 +234,30 @@
        https://www.netbsd.org/people/developers.html
 
    The 'cgd' author of the commit is Chris Demetriou.
+
+
+** FreeBSD (1994-01-04) has Koenig at(1) at initial commit for at.c
+
+   This is the initial scm commit for the file:
+
+   :   usr.bin/at/at.c
+
+   in the FreeBSD source tree:
+
+       https://github.com/freebsd/freebsd/commit/bef639521001043085233d09fd5baf914056a884#diff-eb7badfc5a22849125ad99aacd38ed05
+
+   The scm commit message on the above reads:
+
+   #+BEGIN_QUOTE
+   :   commit bef639521001043085233d09fd5baf914056a884
+   :   Author: nate <nate@FreeBSD.org>
+   :   Date:   Wed Jan 5 01:09:14 1994 +0000
+   :
+   :       Added at/atrm/atq/batch from Linux as hacked by Chris Demetriou.
+   #+END_QUOTE
+
+   No further changes are evident in the scm history for that file in
+   connection with the UCL/CSRG/BSDI lawsuit.
 
 
 * History of 'at' (and friends) on GNU/Linux
@@ -519,10 +595,16 @@
 
   Q: What was your original motivation for for writing at(1)?
 
-     a. Was it ever considered to simply use the at(1) command from BSD? If
-        that idea was considered and rejected, why? (Technical reasons?
-        Legal/licensing reasons? Something else?)
+     a. Was it ever considered to simply use the at(1) command from the Net/2
+        BSD Distribution? If that idea was considered and rejected, why?
+        (Technical reasons?  Legal/licensing reasons? Something else?)
 
      b. Is there any relationship between your at(1) command and the at(1)
         command that Ed Carp mentions that he wrote on comp.lang.linux on
         1993-07-22? Were they entirely different implementations?
+
+  Q: How did your at(1) program come to be the one used in all of the mainline
+     BSD's in 1993?
+
+     While 4.4BSD-Lite kept the 'at.c' from the earlier 4.3BSD-Reno and Net/2
+     distributions, 386BSD, NetBSD, and FreeBSD all used your version.
