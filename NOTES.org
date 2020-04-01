@@ -302,6 +302,35 @@
     : and do what you will
 
 
+** 1992-09-22: comp.os.linux thread (1 msg): "at.shar uploaded to tsx-11"
+
+   The thread had only one message, and can be found via Google Groups here:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux/6B8mcM3e29E
+
+   This is Ed Carp's at(1) program (bug fix release).
+
+
+** 1992-12-22: comp.os.linux thread (9 posts): "Cron for Linux?"
+
+   The thread had 9 posts, and can be found on Google Groups here:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux/jp4GEa795K4
+
+   That thread is about cron(8) rather than at(1), but I mention it because Ed
+   Carp is a participant and points out that there are two different cron
+   implementations for Linux: his own, and the one from Paul Vixie.
+
+   When Ed Carp first implemented his at(1) and atrun(1) programs, their
+   distribution was bundled together with his collection of "periodic"
+   programs, which also included his cron (see his 1992-08-11 post in
+   comp.os.linux noted above). I'm pretty sure that I saw a post (don't have
+   it handy at the moment) to this group -- a "software list for linux" type
+   of post -- that listed Ed Carp's at-${version}.tgz (or something like that)
+   as a separate artifact uploaded to sunsite. If I'm correct, that might mean
+   that between August 1992 and December 1992 the two started to be
+   distributed separately. Still digging.
+
 ** 1993-01-15: comp.os.linux.announce thread (1 msg): "at1-0.taz uploaded to tsx-11"
 
    The thread had only one message, and can be found via Google Groups here:
