@@ -263,6 +263,46 @@
 
 * History of 'at' (and friends) on GNU/Linux
 
+** 1992-01-15 and 1992-01-16: dates of two oldest entries in 'Changelog' file from at-2.5.tar.gz
+
+   The 'at-2.5.tar.gz' source tarball was released on or before 1993-11-20
+   (the day it was announced on comp.os.linux.announce; see further down).
+   FWIW, the dates on the two files I downloaded for the 2.5 release are
+   1993-11-19 (for the at-2.5.tar.gz file) and 1993-11-20 (for the at-2.5.lsm
+   file), so they jibe with the announcement date.
+
+   While the at-2.5.tar.gz is currently the oldest linux at(1) source code
+   artifact I have been able to locate at the time of writing (2020-04-01
+   22:55:18+00:00), its 'Changelog' file allows us to look back a little
+   further.
+
+   This is interesting because the two oldest entries in the 'Changelog' file
+   are from mid-January 1992. If those dates are correct, then Thomas Koenig's
+   at-1.1 release predates Ed Carp's 1992-08-11 announcement post to
+   comp.os.linux (see further down below) by 6 months (which was previously
+   the oldest thing I had found relating to at(1) on Linux).
+
+   #+BEGIN_QUOTE
+   : 15.01.1992, Thomas Koenig
+   :
+   : Fixed a bug combination in at/atrun which meant that files could
+   : be deleted before being executed, now fiddling with the x - bit
+   : (for execution) and the r - bit (for deletion).
+   :
+   : Added -d, -l and -q options with handling.
+   :
+   : 16.01.1992, Thomas Koenig
+   :
+   : Fixed a bug in atrun, where the wrong letters from the filename
+   : was used for determining niceness.
+   :
+   : Added making a distribution, hopefully without clobbering too much...
+   :
+   : Released as 1.1.
+   : ...
+   #+END_QUOTE
+
+
 ** 1992-08-11: comp.os.linux thread (1 msg): "/bin/at, /usr/lib/atrun, & /etc/cron"
 
    The thread had only one message, and can be found via Google Groups here:
@@ -688,7 +728,7 @@
 
 
 
-** 1993-10-17: comp.os.linux.misc thread (1 msg):
+** 1993-10-17: comp.os.linux.misc thread (1 msg): "at-2.3 released"
 
    This thread had a one-shot announcement about the release of at-2.3:
 
