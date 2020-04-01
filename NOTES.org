@@ -262,6 +262,46 @@
 
 * History of 'at' (and friends) on GNU/Linux
 
+** 1992-08-11: comp.os.linux thread (1 msg): ""
+
+   The thread had only one message, and can be found via Google Groups here:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux/hPaY9XbDybE
+
+   In this message Ed Carp announces his newly created at(1) and atrun(1)
+   programs, along with a hint toward why he implemented them.
+
+
+*** [1 of 1] comp.os.linux: 1992-08-11 08:25:49 GMT; Ed Carp; Subject: /bin/at, /usr/lib/atrun, & /etc/cron
+
+    : Newsgroups: comp.os.linux
+    : Path: sparky!uunet!unislc!erc
+    : From: erc@unislc.uucp (Ed Carp)
+    : Subject: /bin/at, /usr/lib/atrun, & /etc/cron
+    : X-Newsreader: Tin 1.1 PL4
+    : Message-ID: <1992Aug11.082549.12117@unislc.uucp>
+    : Organization: Unisys Corporation SLC
+    : Date: Tue, 11 Aug 1992 08:25:49 GMT
+    : Lines: 16
+    :
+    : Taking a break from mailpak-1.3, I found I needed some periodic timer
+    : execution stuff, and Paul Vixie's cron didn't quite fill the bill - I
+    : needed something simpler ... something like the old /etc/cron that
+    : ran stuff out of /usr/lib/crontab.  Oh, and while you're at it, Ed,
+    : how about at and atrun, too?
+    :
+    : Well, folks, within the hour, it should be in tsx-11.mit.edu:/incoming/
+    : periodic.tar.  No manpages, a simple README and install script, but
+    : it works! :)
+    :
+    : Another quick hack from e...@apple.com :)
+    : --
+    : Ed Carp, N7EKG     e...@apple.com                801/538-0177
+    : "This is the final task I will ever give you, and it  goes  on  forever.   Act
+    : happy, feel happy, be happy, without a reason in the world. Then you can love,
+    : and do what you will
+
+
 ** 1993-01-15: comp.os.linux.announce thread (1 msg): "at1-0.taz uploaded to tsx-11"
 
    The thread had only one message, and can be found via Google Groups here:
