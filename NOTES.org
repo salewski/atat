@@ -783,3 +783,37 @@
   This would work similarly to the support for the TIME_STYLE environment
   variable that exists in GNU ls(1) and GNU du(1), and could eliminate the
   need for atat(1) or similar.
+
+** debian bug #612075: "atq date format is not easily sortable"
+
+   https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=612075
+
+   This is a wishlist bug filed in 2011-02 by Bernard Hatt
+   <bmh@arkady.demon.co.uk> asking for a command line option to have the
+   atq(1) output sorted (or to at least have the default output emit the jobs
+   listing "in execution time order".
+
+   This isn't quite what I have in mind, but it scratches the same itch that
+   motivated me to write atat(1). I think if such a feature is going to be
+   "officially supported", then it should behave consisently with GNU ls(1)
+   and GNU du(1), to the extent that it makes sense. That means the command
+   line option should be '--time-style=TIME_STYLE', and the values it accepts
+   match those accepted by those other progs.
+
+   A patch was attached in 2014-07 by Petr Gajdos <pgajdos@suse.cz>, which
+   adds a '-o timeformat' option to atq(1) that accepts a value that can be
+   used as the format argument to strftime(3).
+
+   The issue is tagged as:
+
+   :    Tags: confirmed, patch, upstream
+
+   What does 'upstream' mean in this case? AFAICT, Debian is its own
+   "upstream" in this case; it seems that the package maintainer and the
+   upstream source are one and the same: Jose M Calhariz <calhariz@debian.org>
+
+   The 'at' package metadata lists Calhariz's site as the project's homepage:
+
+       http://blog.calhariz.com
+
+*** TODO: Confirm whether or not I have that right (Calhariz both packager and upstream for 'at'?)
