@@ -262,12 +262,49 @@
 
 * History of 'at' (and friends) on GNU/Linux
 
+** 1993-01-15: comp.os.linux.announce thread (1 msg): "at1-0.taz uploaded to tsx-11"
+
+   The thread had only one message, and can be found via Google Groups here:
+
+       https://groups.google.com/forum/#!topic/comp.os.linux.announce/pHKn4hIfL_A
+
+*** [1 of 1] comp.os.linux.announce: 1993-01-15 12:34:51 GMT; Thomas Koenig; Subject: at1-0.taz uploaded to tsx-11
+
+    : Newsgroups: comp.os.linux.announce
+    : Path: sparky!uunet!mcsun!news.funet.fi!hydra!klaava!wirzeniu
+    : From: ig...@fg20.rz.uni-karlsruhe.de (Thomas Koenig)
+    : Subject: at1-0.taz uploaded to tsx-11
+    : Message-ID: <1993Jan15.123451.18126@klaava.Helsinki.FI>
+    : Followup-To: comp.os.linux
+    : Keywords: at, batch
+    : Sender: wirz...@klaava.Helsinki.FI (Lars Wirzenius)
+    : Organization: University of Karlsruhe, Germany
+    : Date: Fri, 15 Jan 1993 12:34:51 GMT
+    : Approved: linux-a...@tc.cornell.edu (Lars Wirzenius)
+    : Lines: 15
+    :
+    : I have just uploaded at1-0.taz to tsx-11 and expect it to be in the
+    : /pub/linux/sources/usr.bin directory fairly soon.
+    :
+    : It implements the at(1) and batch(1) commands, manpages are included.
+    : People who have used the version of at(1) previously to be found at tsx-11
+    : in a multi - user environment should update to this version, because of
+    : a potential serious security hole in that version.
+    :
+    : Please send bug reports to ig...@rz.uni-karlsruhe.de.
+    :
+    : Happy hacking
+    : --
+    : Thomas Koenig, ig...@rz.uni-karlsruhe.de, ig25@dkauni2.bitnet
+    : The joy of engineering is to find a straight line on a double logarithmic
+    : diagram.
+
+
 ** 1993-07-20: comp.os.linux thread (1 msg): "at and atrun binaries - where to find them"
 
    The thread had only one message, and can be found via Google Groups here:
 
        https://groups.google.com/forum/#!topic/comp.os.linux/bZ-fLPH3tNM
-
 
 *** [1 of 1] comp.os.linux: 1993-07-20 09:14:46 GMT; Nick Sandru; Subject: at and atrun binaries - where to find them
 
