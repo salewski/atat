@@ -262,7 +262,7 @@
 
 * History of 'at' (and friends) on GNU/Linux
 
-** 1992-08-11: comp.os.linux thread (1 msg): ""
+** 1992-08-11: comp.os.linux thread (1 msg): "/bin/at, /usr/lib/atrun, & /etc/cron"
 
    The thread had only one message, and can be found via Google Groups here:
 
