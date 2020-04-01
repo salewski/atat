@@ -268,6 +268,62 @@
 
        https://groups.google.com/forum/#!topic/comp.os.linux.announce/pHKn4hIfL_A
 
+   At the time of writing (2020-04-01), this is the earliest thread I've found
+   (still looking) about a linux-specific at(1) implementation. There is
+   subsequent activity on it, though, that I'll just document pointers to in
+   case I need/want to dig deeper in that direction at some point:
+
+   - 1993-01-19: "at-1.1.tar.Z uploaded to tsx-11.mit.edu"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/QwlDxZ1h_Z8
+
+   - 1993-01-26: "at-1.1a.tar.Z uploaded to tsx-11"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/QwlDxZ1h_Z8
+
+   - 1993-04-16: "at-1.2.tar.Z uploaded to tsx-11 and sunsite"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/iqmrsFp0h6g
+
+   - 1993-09-30: "at-2.0 released"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/zNBEXAa7CmQ
+
+     This message also notes, "David Parsons ... wrote the time parsing
+     routines for 2.0; many thanks to him!".
+
+   - 1993-10-03: "At 2.0 security bug; 2.1 uploaded to sunsite and tsx-11"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/-WJV7kHgI60
+
+   - 1993-10-14: "at-2.2 uploaded to sunsite and tsx-11"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/8qIjFfo5kpo
+
+   - 1993-10-17: "at-2.3 released"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/uk5plLTVLUA
+
+   - 1993-11-20: "at 2.5 released"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/wihRNyVL5W8
+
+   - 1994-03-01: "at-2.6 uploaded to tsx-11 and sunsite"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/nmLhNrlGij0
+
+   - 1994-03-03: "at-2.6a uploaded to tsx-11 and sunsite"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/HHx2LV4V6p4
+
+   - 1994-03-13: "at-2.6b uploaded"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/OIZGseYCNC0
+
+   - 1994-05-10: "at-2.7 uploaded to tsx-11 and sunsite"
+
+     https://groups.google.com/forum/#!topic/comp.os.linux.announce/IllX5qDq-ig
+
 *** [1 of 1] comp.os.linux.announce: 1993-01-15 12:34:51 GMT; Thomas Koenig; Subject: at1-0.taz uploaded to tsx-11
 
     : Newsgroups: comp.os.linux.announce
