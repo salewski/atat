@@ -33,7 +33,7 @@
       or to write a new one from scratch).
 
    2. The pre-Koenig at(1) that was present before the lawsuit in the
-      4.4BSD-Reno distribution from early 1990 (and presumably also in the
+      4.3BSD-Reno distribution from early 1990 (and presumably also in the
       later Net/2 BSD distribution (which started shipping in June 1991))
       survived to also be present in the 4.4BSD-Lite released in June 1994
       (after the lawsuit had been settled earlier that same year, in January).
