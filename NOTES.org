@@ -331,6 +331,12 @@
    that between August 1992 and December 1992 the two started to be
    distributed separately. Still digging.
 
+   _UPDATE:_ I could find no further mention of at(1) on comp.os.linux until
+   the 1993-07-21 thread (noted further down below) in which Ed Carp mentions
+   that somebody had picked up working on the version he had distributed
+   earlier.
+
+
 ** 1993-01-15: comp.os.linux.announce thread (1 msg): "at1-0.taz uploaded to tsx-11"
 
    The thread had only one message, and can be found via Google Groups here:
