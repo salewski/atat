@@ -598,6 +598,7 @@ POD2HTML
 POD2MAN
 XARGS
 CAT
+BASH_SH
 AT
 LN_S
 DFLT_MAINTAINER
@@ -2422,6 +2423,67 @@ if test -z "$AT"; then
     as_fn_error $? "at not found" "$LINENO" 5
 fi
 
+
+## We need bash >= 4.x (associative arrays were added in bash-4.0, which was
+## released in 2009)
+##
+##     https://www.gnu.org/software/bash/
+##     https://tiswww.case.edu/php/chet/bash/bashtop.html
+##
+## For a list of notable changes in released bash versions, see:
+##
+##     https://mywiki.wooledge.org/BashFAQ/061
+##
+# Extract the first word of "bash", so it can be a program name with args.
+set dummy bash; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_BASH_SH+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $BASH_SH in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_BASH_SH="$BASH_SH" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_BASH_SH="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+BASH_SH=$ac_cv_path_BASH_SH
+if test -n "$BASH_SH"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $BASH_SH" >&5
+$as_echo "$BASH_SH" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+if test -z "$BASH_SH"; then :
+  as_fn_error $? "bash not found" "$LINENO" 5
+elif "${BASH_SH}" -c 'test -n "${BASH_VERSINFO[0]:+set}" && test ${BASH_VERSINFO[0]} -ge 4 && exit 0'; then :
+  :
+else
+  as_fn_error $? "found version of bash is not new enough; bash 4.0 or newer is required" "$LINENO" 5
+
+fi
+
+
 # Extract the first word of "cat", so it can be a program name with args.
 set dummy cat; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
@@ -2705,8 +2767,9 @@ do_subst_command='do_subst = sed \
   -e '"'"'s,[@]POD2MAN[@],$(POD2MAN),g'"'"' \
   -e '"'"'s,[@]POD2HTML[@],$(POD2HTML),g'"'"' \
   \
-  -e '"'"'s,[@]AT[@],$(AT),g'"'"'   \
-  -e '"'"'s,[@]CAT[@],$(CAT),g'"'"' \
+  -e '"'"'s,[@]AT[@],$(AT),g'"'"'       \
+  -e '"'"'s,[@]BASH_SH[@],$(BASH_SH),g'"'"'   \
+  -e '"'"'s,[@]CAT[@],$(CAT),g'"'"'     \
   -e '"'"'s,[@]XARGS[@],$(XARGS),g'"'"' \
 '
 
@@ -2741,7 +2804,7 @@ sed_srsanitize_command='sed_srsanitize = sed \
 
 
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/main/Makefile src/main/sh/Makefile src/main/sh/bin/Makefile"
+ac_config_files="$ac_config_files Makefile src/Makefile src/main/Makefile src/main/bash/Makefile src/main/bash/bin/Makefile"
 
 
 cat >confcache <<\_ACEOF
@@ -3464,8 +3527,8 @@ do
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/main/Makefile") CONFIG_FILES="$CONFIG_FILES src/main/Makefile" ;;
-    "src/main/sh/Makefile") CONFIG_FILES="$CONFIG_FILES src/main/sh/Makefile" ;;
-    "src/main/sh/bin/Makefile") CONFIG_FILES="$CONFIG_FILES src/main/sh/bin/Makefile" ;;
+    "src/main/bash/Makefile") CONFIG_FILES="$CONFIG_FILES src/main/bash/Makefile" ;;
+    "src/main/bash/bin/Makefile") CONFIG_FILES="$CONFIG_FILES src/main/bash/bin/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
@@ -3981,6 +4044,8 @@ printf "                  Manual pages: %s\n" "`__expand_fully manhtmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man1htmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man5htmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man7htmldir`"
+printf "\n"
+printf "                          bash: %s\n" "`__expand_fully BASH_SH`"
 printf "\n"
 printf "                         SHELL: %s\n" "`__expand_fully SHELL`"
 printf "                            AT: %s\n" "`__expand_fully AT`"
