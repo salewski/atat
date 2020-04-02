@@ -256,6 +256,15 @@ AC_SUBST([sed_srsanitize_command])
 
 
 dnl Declare our output Makefiles
+dnl
+dnl HINT: To maximize joy, get this into your shell history:
+dnl
+dnl           $ git add configure {,src/{,main/{,bash/{,bin/}}}}Makefile.in
+dnl
+dnl       The opposite action can be handy, too:
+dnl
+dnl           $ git reset HEAD configure {,src/{,main/{,bash/{,bin/}}}}Makefile.in
+dnl
 AC_CONFIG_FILES(
         [Makefile]
         [src/Makefile]
