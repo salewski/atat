@@ -33,8 +33,8 @@
       or to write a new one from scratch).
 
    2. The pre-Koenig at(1) that was present before the lawsuit in the
-      4.3BSD-Reno distribution from early 1990 (and presumably also in the
-      later Net/2 BSD distribution (which started shipping in June 1991))
+      4.3BSD-Reno distribution from early 1990 +(and presumably also in the+
+      +later Net/2 BSD distribution (which started shipping in June 1991))+
       survived to also be present in the 4.4BSD-Lite released in June 1994
       (after the lawsuit had been settled earlier that same year, in January).
 
@@ -209,6 +209,29 @@
    #+END_SRC
 
    Compare that with the copyright heading of the file in the earlier 2.11BSD.
+
+** 4.3BSD-Reno --> Net/2 --> 4.4BSDLite(2): what happened to 'at.c' in Net/2?
+
+   Though I can find 'at.c' in 4.3BSD-Reno and then later in 4.4BSD-Lite(2), I
+   can't seem to find a Net/2 repo that contains the file, but neither can I
+   find a reason for it's omission or removal.
+
+   As noted elsewhere, the file is present in 4.3BSD-Reno (early 1990) and is
+   there (with an updated copyright notice) in 4.4BSD-Lite(2) (mid 1994 and
+   later).
+
+   There is information about the USL/BSDi/CSRG lawsuit here:
+
+       http://www.groklaw.net/article.php?story=20041126130302760
+
+   and (thanks to a CA freedom of information law) a PDF of the settlement is
+   here:
+
+       http://www.groklaw.net/pdf/USLsettlement.pdf
+
+   The settlement lists all of the files that were in dispute, and 'at.c' is
+   not one of them. That also makes me wonder why the copyright statement on
+   the file was changed for 4.4BSD.
 
 
 ** NetBSD (1993-12-05) has Koenig at(1) at initial commit for at.c, at.1
@@ -804,9 +827,10 @@
 
   Q: What was your original motivation for for writing at(1)?
 
-     a. Was it ever considered to simply use the at(1) command from the Net/2
-        BSD Distribution? If that idea was considered and rejected, why?
-        (Technical reasons?  Legal/licensing reasons? Something else?)
+     a. Was it ever considered to simply use the at(1) command from the
+        +Net/2+ 4.3BSD-Reno Distribution? If that idea was considered and
+        rejected, why?  (Technical reasons?  Legal/licensing reasons?
+        Something else?)
 
      b. Is there any relationship between your at(1) command and the at(1)
         command that Ed Carp mentions that he wrote on comp.lang.linux on
@@ -815,8 +839,8 @@
   Q: How did your at(1) program come to be the one used in all of the mainline
      BSD's in 1993?
 
-     While 4.4BSD-Lite kept the 'at.c' from the earlier 4.3BSD-Reno and Net/2
-     distributions, 386BSD, NetBSD, and FreeBSD all used your version.
+     While 4.4BSD-Lite kept the 'at.c' from the earlier 4.3BSD-Reno +and+
+     +Net/2+ distributions, 386BSD, NetBSD, and FreeBSD all used your version.
 
 
 * New at(1) feature: support TIME_STYLE env var, --time-style=TIME_STYLE opt
