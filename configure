@@ -589,8 +589,6 @@ LIBOBJS
 sed_srsanitize_command
 sed_slsanitize_command
 do_subst_command
-man7htmldir
-man5htmldir
 man1htmldir
 manhtmldir
 pkghtmldir
@@ -2691,8 +2689,6 @@ pkghtmldir="\${htmldir}/html"
 manhtmldir="\${pkghtmldir}/man"
 
 man1htmldir="\${pkghtmldir}/man/man1"
-man5htmldir="\${pkghtmldir}/man/man5"
-man7htmldir="\${pkghtmldir}/man/man7"
 
 
 
@@ -2759,8 +2755,6 @@ do_subst_command='do_subst = sed \
   \
   -e '"'"'s,[@]manhtmldir[@],$(manhtmldir),g'"'"'   \
   -e '"'"'s,[@]man1htmldir[@],$(man1htmldir),g'"'"' \
-  -e '"'"'s,[@]man5htmldir[@],$(man5htmldir),g'"'"' \
-  -e '"'"'s,[@]man7htmldir[@],$(man7htmldir),g'"'"' \
   \
   -e '"'"'s,[@]DFLT_MAINTAINER[@],$(DFLT_MAINTAINER),g'"'"' \
   \
@@ -4042,8 +4036,6 @@ printf "                  Manual pages: %s\n" "`__expand_fully mandir`"
 printf "\n"
 printf "                  Manual pages: %s\n" "`__expand_fully manhtmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man1htmldir`"
-printf "                  Manual pages: %s\n" "`__expand_fully man5htmldir`"
-printf "                  Manual pages: %s\n" "`__expand_fully man7htmldir`"
 printf "\n"
 printf "                          bash: %s\n" "`__expand_fully BASH_SH`"
 printf "\n"

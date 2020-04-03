@@ -126,7 +126,8 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-am__installdirs = "$(DESTDIR)$(bindir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(man1dir)" \
+	"$(DESTDIR)$(man1htmldir)"
 SCRIPTS = $(bin_SCRIPTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -147,7 +148,10 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-DATA = $(dist_noinst_DATA)
+man1dir = $(mandir)/man1
+NROFF = nroff
+MANS = $(man1_MANS)
+DATA = $(dist_noinst_DATA) $(man1html_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 am__DIST_COMMON = $(srcdir)/Makefile.in
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -219,8 +223,6 @@ libexecdir = @libexecdir@
 localedir = @localedir@
 localstatedir = @localstatedir@
 man1htmldir = @man1htmldir@
-man5htmldir = @man5htmldir@
-man7htmldir = @man7htmldir@
 mandir = @mandir@
 manhtmldir = @manhtmldir@
 mkdir_p = @mkdir_p@
@@ -248,32 +250,31 @@ SSCRIPTS =
 # "generated" scripts (filtered here by do_subst)
 GSCRIPTS = atat
 
-# # "static" man pages, section 1
-# S1MANPAGES =
-# S1MANPAGES_AS_HTML =
-# # "generated" man pages, section 1
-# G1MANPAGES = $(INPUT_TEMPLATES:.in=.1)
-# G1MANPAGES_AS_HTML = $(INPUT_TEMPLATES:.in=.1.html)
+# "static" man pages, section 1
+S1MANPAGES = 
+S1MANPAGES_AS_HTML = 
+# "generated" man pages, section 1
+G1MANPAGES = $(INPUT_TEMPLATES:.in=.1)
+G1MANPAGES_AS_HTML = $(INPUT_TEMPLATES:.in=.1.html)
+ALL_MANPAGES_1 = $(S1MANPAGES) $(G1MANPAGES)
+ALL_MANPAGES_1_AS_HTML = $(S1MANPAGES_AS_HTML) $(G1MANPAGES_AS_HTML)
 
-# ALL_MANPAGES_1 = $(S1MANPAGES) $(G1MANPAGES)
-
-# ALL_MANPAGES_1_AS_HTML = $(S1MANPAGES_AS_HTML) $(G1MANPAGES_AS_HTML)
-
-# # "static" man pages
-# SMANPAGES = $(S1MANPAGES)
-# SMANPAGES_AS_HTML = $(S1MANPAGES_AS_HTML)
-# # "generated" man pages
-# GMANPAGES = $(G1MANPAGES)
-# GMANPAGES_AS_HTML = $(G1MANPAGES_AS_HTML)
+# "static" man pages
+SMANPAGES = $(S1MANPAGES)
+SMANPAGES_AS_HTML = $(S1MANPAGES_AS_HTML)
+# "generated" man pages
+GMANPAGES = $(G1MANPAGES)
+GMANPAGES_AS_HTML = $(G1MANPAGES_AS_HTML)
 bin_SCRIPTS = $(SSCRIPTS) $(GSCRIPTS)
 dist_noinst_DATA = $(INPUT_TEMPLATES)
+man1_MANS = $(ALL_MANPAGES_1)
+man1html_DATA = $(ALL_MANPAGES_1_AS_HTML)
+CLEANFILES = $(GSCRIPTS) $(GMANPAGES) $(GMANPAGES_AS_HTML) $(SMANPAGES_AS_HTML)
+PHONY = \
+    clean-local \
+    clean-generated-man-pages \
+    clean-pod2html-cache-files
 
-# man1_MANS = $(ALL_MANPAGES_1)
-
-# man1html_DATA = $(ALL_MANPAGES_1_AS_HTML)
-
-# CLEANFILES = $(GSCRIPTS) $(GMANPAGES) $(GMANPAGES_AS_HTML) $(SMANPAGES_AS_HTML)
-CLEANFILES = $(GSCRIPTS)
 all: all-am
 
 .SUFFIXES:
@@ -341,6 +342,68 @@ uninstall-binSCRIPTS:
 	files=`for p in $$list; do echo "$$p"; done | \
 	       sed -e 's,.*/,,;$(transform)'`; \
 	dir='$(DESTDIR)$(bindir)'; $(am__uninstall_files_from_dir)
+install-man1: $(man1_MANS)
+	@$(NORMAL_INSTALL)
+	@list1='$(man1_MANS)'; \
+	list2=''; \
+	test -n "$(man1dir)" \
+	  && test -n "`echo $$list1$$list2`" \
+	  || exit 0; \
+	echo " $(MKDIR_P) '$(DESTDIR)$(man1dir)'"; \
+	$(MKDIR_P) "$(DESTDIR)$(man1dir)" || exit 1; \
+	{ for i in $$list1; do echo "$$i"; done;  \
+	if test -n "$$list2"; then \
+	  for i in $$list2; do echo "$$i"; done \
+	    | sed -n '/\.1[a-z]*$$/p'; \
+	fi; \
+	} | while read p; do \
+	  if test -f $$p; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; echo "$$p"; \
+	done | \
+	sed -e 'n;s,.*/,,;p;h;s,.*\.,,;s,^[^1][0-9a-z]*$$,1,;x' \
+	      -e 's,\.[0-9a-z]*$$,,;$(transform);G;s,\n,.,' | \
+	sed 'N;N;s,\n, ,g' | { \
+	list=; while read file base inst; do \
+	  if test "$$base" = "$$inst"; then list="$$list $$file"; else \
+	    echo " $(INSTALL_DATA) '$$file' '$(DESTDIR)$(man1dir)/$$inst'"; \
+	    $(INSTALL_DATA) "$$file" "$(DESTDIR)$(man1dir)/$$inst" || exit $$?; \
+	  fi; \
+	done; \
+	for i in $$list; do echo "$$i"; done | $(am__base_list) | \
+	while read files; do \
+	  test -z "$$files" || { \
+	    echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(man1dir)'"; \
+	    $(INSTALL_DATA) $$files "$(DESTDIR)$(man1dir)" || exit $$?; }; \
+	done; }
+
+uninstall-man1:
+	@$(NORMAL_UNINSTALL)
+	@list='$(man1_MANS)'; test -n "$(man1dir)" || exit 0; \
+	files=`{ for i in $$list; do echo "$$i"; done; \
+	} | sed -e 's,.*/,,;h;s,.*\.,,;s,^[^1][0-9a-z]*$$,1,;x' \
+	      -e 's,\.[0-9a-z]*$$,,;$(transform);G;s,\n,.,'`; \
+	dir='$(DESTDIR)$(man1dir)'; $(am__uninstall_files_from_dir)
+install-man1htmlDATA: $(man1html_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(man1html_DATA)'; test -n "$(man1htmldir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(man1htmldir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(man1htmldir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(man1htmldir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(man1htmldir)" || exit $$?; \
+	done
+
+uninstall-man1htmlDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(man1html_DATA)'; test -n "$(man1htmldir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(man1htmldir)'; $(am__uninstall_files_from_dir)
 tags TAGS:
 
 ctags CTAGS:
@@ -383,9 +446,9 @@ distdir-am: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(SCRIPTS) $(DATA)
+all-am: Makefile $(SCRIPTS) $(MANS) $(DATA)
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(man1htmldir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -421,7 +484,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic mostlyclean-am
+clean-am: clean-generic clean-local mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
@@ -439,7 +502,7 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-man install-man1htmlDATA
 
 install-dvi: install-dvi-am
 
@@ -455,7 +518,7 @@ install-info: install-info-am
 
 install-info-am:
 
-install-man:
+install-man: install-man1
 
 install-pdf: install-pdf-am
 
@@ -483,31 +546,37 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binSCRIPTS
+uninstall-am: uninstall-binSCRIPTS uninstall-man \
+	uninstall-man1htmlDATA
+
+uninstall-man: uninstall-man1
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic cscopelist-am \
-	ctags-am distclean distclean-generic distdir dvi dvi-am html \
-	html-am info info-am install install-am install-binSCRIPTS \
-	install-data install-data-am install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
+.PHONY: all all-am check check-am clean clean-generic clean-local \
+	cscopelist-am ctags-am distclean distclean-generic distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-binSCRIPTS install-data install-data-am install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-man1 install-man1htmlDATA install-pdf install-pdf-am \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic pdf \
 	pdf-am ps ps-am tags-am uninstall uninstall-am \
-	uninstall-binSCRIPTS
+	uninstall-binSCRIPTS uninstall-man uninstall-man1 \
+	uninstall-man1htmlDATA
 
 .PRECIOUS: Makefile
 
+# CLEANFILES = $(GSCRIPTS)
 
 @do_subst_command@
 
 # Generated files depend on Makefile so they will be rebuilt if $(VERSION) or
 # other do_subst'ituted variables change.
-# $(GSCRIPTS) $(GMANPAGES) $(GMANPAGES_AS_HTML) $(SMANPAGES_AS_HTML): Makefile
-$(GSCRIPTS): Makefile
+$(GSCRIPTS) $(GMANPAGES) $(GMANPAGES_AS_HTML) $(SMANPAGES_AS_HTML): Makefile
+#$(GSCRIPTS): Makefile
 
 # These files depend on Makefile so they will be rebuilt if $(VERSION) or
 # other do_subst'ituted variables change. Use chmod a-w to prevent people from
@@ -532,62 +601,57 @@ $(GSCRIPTS): % : %.in
 	chmod a-w "$@"      ;\
 	chmod a+rx "$@"
 
-# # $(G1MANPAGES): %.1 : %.in
-# $(G1MANPAGES): %.1 : %
-# 	target_name="$@" ;\
-# 	tname=$$(echo "$${target_name}" | sed -e 's/\.1$$//') ;\
-# 	"$(POD2MAN)" $< \
-# 	    --center='User Commands' \
-# 	    --name="$${tname}" \
-# 	    --release=$(PACKAGE)-$(VERSION) \
-# 	    --section=1 > "$${target_name}"
+# $(G1MANPAGES): %.1 : %.in
+$(G1MANPAGES): %.1 : %
+	target_name="$@" ;\
+	tname=$$(echo "$${target_name}" | sed -e 's/\.1$$//') ;\
+	"$(POD2MAN)" $< \
+	    --center='User Commands' \
+	    --name="$${tname}" \
+	    --release=$(PACKAGE)-$(VERSION) \
+	    --section=1 > "$${target_name}"
 
-# # $(G1MANPAGES_AS_HTML): %.1.html : %.in
-# $(G1MANPAGES_AS_HTML): %.1.html : %
-# 	target_name="$@" ;\
-# 	tname=$${target_name};\
-# 	"$(POD2HTML)" \
-# 	    --htmlroot='https://example.com/' \
-# 	    --css='../../stylesheets/pod2html-manpage.css' \
-# 	    \
-# 	    --infile='$<'      \
-# 	    --outfile="$${target_name}" \
-# 	    \
-# 	    --title="$${tname}" \
-# 	    \
-# 	    --flush      \
-# 	    --noheader   \
-# 	    --noindex    \
-# 	    --noquiet    \
-# 	    --verbose
+# $(G1MANPAGES_AS_HTML): %.1.html : %.in
+$(G1MANPAGES_AS_HTML): %.1.html : %
+	target_name="$@" ;\
+	tname=$${target_name};\
+	"$(POD2HTML)" \
+	    --htmlroot='https://example.com/' \
+	    --css='../../stylesheets/pod2html-manpage.css' \
+	    \
+	    --infile='$<'      \
+	    --outfile="$${target_name}" \
+	    \
+	    --title="$${tname}" \
+	    \
+	    --flush      \
+	    --noheader   \
+	    --noindex    \
+	    --noquiet    \
+	    --verbose
 
-#clean-local:
-#	$(MAKE) clean-generated-man-pages
-#	$(MAKE) clean-pod2html-cache-files
+clean-local:
+	$(MAKE) clean-generated-man-pages
+	$(MAKE) clean-pod2html-cache-files
 
-# clean-generated-man-pages:
-# 	set -e ;\
-# 	list='$(GMANPAGES)' ;\
-# 	for mpath in $${list}; do \
-# 	    $(RM) -f "$${mpath}" ;\
-# 	    test $$? -eq 0 || exit 1 ;\
-# 	done
+clean-generated-man-pages:
+	set -e ;\
+	list='$(GMANPAGES)' ;\
+	for mpath in $${list}; do \
+	    $(RM) -f "$${mpath}" ;\
+	    test $$? -eq 0 || exit 1 ;\
+	done
 
-# # In theory, this should not be necessary, but it is required for the author
-# # using pod2html from the Debian package perl-5.20.2-3+deb8u5
-# #
-# # See also:
-# #
-# #     https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=616582
-# #     https://rt.perl.org/Public/Bug/Display.html?id=69782
-# #
-# clean-pod2html-cache-files:
-# 	$(RM) -f -v pod2htmd.tmp pod2htmi.tmp
-
-# PHONY = \
-#     clean-local \
-#     clean-generated-man-pages \
-#     clean-pod2html-cache-files
+# In theory, this should not be necessary, but it is required for the author
+# using pod2html from the Debian package perl-5.20.2-3+deb8u5
+#
+# See also:
+#
+#     https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=616582
+#     https://rt.perl.org/Public/Bug/Display.html?id=69782
+#
+clean-pod2html-cache-files:
+	$(RM) -f -v pod2htmd.tmp pod2htmi.tmp
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
