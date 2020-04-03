@@ -139,9 +139,9 @@ AC_SUBST([man1htmldir], ["\${pkghtmldir}/man/man1"])dnl executable programs
 dnl AC_SUBST([man2htmldir], ["\${pkghtmldir}/man/man2"])dnl system calls
 dnl AC_SUBST([man3htmldir], ["\${pkghtmldir}/man/man3"])dnl library calls
 dnl AC_SUBST([man4htmldir], ["\${pkghtmldir}/man/man4"])dnl special files (usually found in /dev)
-AC_SUBST([man5htmldir], ["\${pkghtmldir}/man/man5"])dnl file formats and conventions
+dnl AC_SUBST([man5htmldir], ["\${pkghtmldir}/man/man5"])dnl file formats and conventions
 dnl AC_SUBST([man6htmldir], ["\${pkghtmldir}/man/man6"])dnl games
-AC_SUBST([man7htmldir], ["\${pkghtmldir}/man/man7"])dnl misc (packages, conventions, intro pages, ...)
+dnl AC_SUBST([man7htmldir], ["\${pkghtmldir}/man/man7"])dnl misc (packages, conventions, intro pages, ...)
 dnl AC_SUBST([man8htmldir], ["\${pkghtmldir}/man/man8"])dnl sysadmin commands (e.g., for root only)
 dnl AC_SUBST([man9htmldir], ["\${pkghtmldir}/man/man9"])dnl kernel routines (non-standard)
 
@@ -210,8 +210,6 @@ do_subst_command='do_subst = sed \
   \
   -e '"'"'s,[@]manhtmldir[@],$(manhtmldir),g'"'"'   \
   -e '"'"'s,[@]man1htmldir[@],$(man1htmldir),g'"'"' \
-  -e '"'"'s,[@]man5htmldir[@],$(man5htmldir),g'"'"' \
-  -e '"'"'s,[@]man7htmldir[@],$(man7htmldir),g'"'"' \
   \
   -e '"'"'s,[@]DFLT_MAINTAINER[@],$(DFLT_MAINTAINER),g'"'"' \
   \
@@ -329,8 +327,6 @@ printf "                  Manual pages: %s\n" "`__expand_fully mandir`"
 printf "\n"
 printf "                  Manual pages: %s\n" "`__expand_fully manhtmldir`"
 printf "                  Manual pages: %s\n" "`__expand_fully man1htmldir`"
-printf "                  Manual pages: %s\n" "`__expand_fully man5htmldir`"
-printf "                  Manual pages: %s\n" "`__expand_fully man7htmldir`"
 printf "\n"
 printf "                          bash: %s\n" "`__expand_fully BASH_SH`"
 printf "\n"
