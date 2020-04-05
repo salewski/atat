@@ -167,6 +167,13 @@ EOF
 
 # main of program starts here
 
+# Per our documented behavior, and command line options not recognized by
+# atat(1) will be passed through to atq(1). We'll collect all such options in
+# this array; the same goes for any command line options/arguments that follow
+# the magic '--' pseudo option.
+#
+declare -a OPTS_TO_PASS_THROUGH_TO_ATQ=()
+
 pos_last_plus_one=$(( $# + 1 ))
 
 # Each value is one or zero, which indicates whether or not the option is
@@ -202,7 +209,8 @@ if test $# -gt 0; then
     #
     while builtin getopts ':-:hVv' opt
     do
-        : $PROG \(trace: $LINENO\): opt is: $opt
+        : $PROG \(trace: $LINENO\):    opt is: $opt
+        : $PROG \(trace: $LINENO\): OPTARG is: $OPTARG
 
         # cosmetic: for log/error messages
         t_pfx='-'  # assume short-form option
@@ -250,12 +258,24 @@ if test $# -gt 0; then
                 done
 
                 if $t_exists; then :; else
-                    # Unrecognized option; note that we need to restore the
-                    # leading '-' chars that getopts has sliced off.
+                    # # Unrecognized option; note that we need to restore the
+                    # # leading '-' chars that getopts has sliced off.
+                    # #
+                    # printf "${PROG} (error): unrecognized long option '%s%s'; bailing out\n" "${t_pfx}" "${opt}" 1>&2
+                    # f_print_help 1>&2
+                    # exit 1
+
+                    # Unrecognized option. We'll queue it up to pass through
+                    # to atq(1). Note that we need to restore the '--' prefix
+                    # to the option.
                     #
-                    printf "${PROG} (error): unrecognized long option '%s%s'; bailing out\n" "${t_pfx}" "${opt}" 1>&2
-                    f_print_help 1>&2
-                    exit 1
+                    # Note that we are passing OPTARG through; if the option
+                    # had an argument, both the option and its parameter are
+                    # in OPTARG, as we know it is a full 'name=value' here.
+                    #
+                    OPTS_TO_PASS_THROUGH_TO_ATQ+=( "${t_pfx}${opt}" )
+                    (( ++OPTIND ))
+                    continue
                 fi
 
                 # Since we know the option was specified in --foo=BAR form,
@@ -304,12 +324,47 @@ if test $# -gt 0; then
 
                 if $t_exists; then :; else
 
-                    # Unrecognized option; note that we need to restore the
-                    # leading '-' chars that getopts has sliced off.
+                    # # Unrecognized option; note that we need to restore the
+                    # # leading '-' chars that getopts has sliced off.
+                    # #
+                    # printf "${PROG} (error): unrecognized long option '%s%s'; bailing out\n" "${t_pfx}" "${opt}" 1>&2
+                    # f_print_help 1>&2
+                    # exit 1
+
+                    # Unrecognized option. We'll queue it up to pass through
+                    # to atq(1). Note that we need to restore the '--' prefix
+                    # to the option.
+                    OPTS_TO_PASS_THROUGH_TO_ATQ+=( "${t_pfx}${opt}" )
+
+                    # If there is another command line argument and it is a
+                    # parameter to the option we are passing through (as
+                    # determined by its lack of a leading '-' char), then we
+                    # will need to pass it through, as well.
+                    # If bumping OPTIND would put us more than one beyond the "last pos
+                    # plus one", then there is no argument provided at position OPTIND for
+                    # us to consume.
                     #
-                    printf "${PROG} (error): unrecognized long option '%s%s'; bailing out\n" "${t_pfx}" "${opt}" 1>&2
-                    f_print_help 1>&2
-                    exit 1
+                    if (( $(( $OPTIND + 1 )) > pos_last_plus_one )); then
+                        (( ++OPTIND ))
+                        continue
+                    else
+                        t_cand_optarg=${@:${OPTIND}:1}
+                        if [[ ${t_cand_optarg} =~ ^[-].* ]]; then
+                            # Looks like another command line option (i.e., is
+                            # not an argument to our pass-through option).
+                            (( ++OPTIND ))  # pos of pass-through opt
+                            unset t_cand_optarg
+                            continue
+                        else
+                            # Looks like a parameter to our pass-through option
+                            OPTS_TO_PASS_THROUGH_TO_ATQ+=( "${t_cand_optarg}" )
+                            (( ++OPTIND ))  # pos of pass-through opt
+                            (( ++OPTIND ))  # pos of pass-through opt's argument
+                            unset t_cand_optarg
+                            continue
+                        fi
+                    fi
+
                 fi
 
                 # We know the option was specified in one of the following forms:
@@ -409,9 +464,39 @@ if test $# -gt 0; then
                   ;;
 
             '?')  # getopts put ? in opt  (means "unrecognized option")
-                  printf "${PROG} (error): unrecognized option '%s%s'; bailing out\n" "$t_pfx" "$OPTARG" 1>&2
-                  f_print_help 1>&2
-                  exit 1;
+                  # printf "${PROG} (error): unrecognized option '%s%s'; bailing out\n" "$t_pfx" "$OPTARG" 1>&2
+                  # f_print_help 1>&2
+                  # exit 1;
+
+                  # Unrecognized option. We'll queue it up to pass through to
+                  # atq(1). Note that we need to restore the prefix ('-' or
+                  # '--') to the option.
+                  OPTS_TO_PASS_THROUGH_TO_ATQ+=( "${t_pfx}${OPTARG}" )
+
+                  # If there is another command line argument and it is a
+                  # parameter to the option we are passing through (as
+                  # determined by its lack of a leading '-' char), then we
+                  # will need to pass it through, as well.  If bumping OPTIND
+                  # would put us more than one beyond the "last pos plus one",
+                  # then there is no argument provided at position OPTIND for
+                  # us to consume.
+                  #
+                  if (( $(( $OPTIND + 1 )) > pos_last_plus_one )); then
+                      : No additional parameter possible; nothing to do
+                  else
+                      t_cand_optarg=${@:${OPTIND}:1}
+                      if [[ ${t_cand_optarg} =~ ^[-].* ]]; then
+                          :
+                          # Looks like another command line option (i.e., is
+                          # not an argument to our pass-through
+                          # option). Nothing to do.
+                      else
+                          # Looks like a parameter to our pass-through option
+                          OPTS_TO_PASS_THROUGH_TO_ATQ+=( "${t_cand_optarg}" )
+                          (( ++OPTIND ))  # hand-crank to hop it on the next getopts loop
+                      fi
+                      unset t_cand_optarg
+                    fi
                   ;;
 
             * )   printf "${PROG} (BUG) [line $LINENO]: unhandled option case; opt: '$opt',  OPTARG: '$OPTARG'\n" 1>&2
@@ -430,9 +515,10 @@ while (( ii < ${OPTIND} )); do
 done
 
 # Drain any remaining command line parameters not processed by getopts; we'll
-# just ignore them.
+# pass all of them through to atq(1).
 while test $# -gt 0; do
-    : $PROG \(trace: $LINENO\): ignoring command line parameter: $1
+    : $PROG \(trace: $LINENO\): collecting command line parameter to pass through to atq: $1
+    OPTS_TO_PASS_THROUGH_TO_ATQ+=( "$1" )
     shift
 done
 
@@ -484,10 +570,20 @@ done
 #     40 2021-02-22 03:00:00 a ads
 #     51 2020-08-25 03:00:00 a ads
 
+# Anybody trying to debug this program is going to want to see how atq(1) (or
+# 'at -l') gets invoked. So as a special case, we'll enable tracing here at
+# the very end if debugging output is enabled but tracing is not.
+#
+if $DEBUGGING; then
+    if $TRACING; then :; else
+        set -x
+    fi
+fi
+
 # Note that we pass the ${PROG} name to the shell merely so it will be used to
 # set $0. That allows us to avoid needing to "subtract one" with our field
 # numbers.
-"${AT_PROG}" -l \
+"${AT_PROG}" -l "${OPTS_TO_PASS_THROUGH_TO_ATQ[@]}" \
 | "${XARGS_PROG}" -r -L 1 "${SH_PROG}" -c 'echo $1 $(date --date "$2, $4 $3 $6 $5" "+%F %T") $7 $8' atat
 
 exit 0
