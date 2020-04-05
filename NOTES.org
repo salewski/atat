@@ -249,7 +249,7 @@
    #+BEGING_QUOTE
    :    Revision 1.1, Sun Dec 5 11:36:38 1993 UTC (26 years, 3 months ago) by cgd
    :    Branch: MAIN
-   :
+   : 
    :    add at, by Thomas Koenig, ig25@rz.uni-karlsruhe.de
    #+END_QUOTE
 
@@ -276,7 +276,7 @@
    :   commit bef639521001043085233d09fd5baf914056a884
    :   Author: nate <nate@FreeBSD.org>
    :   Date:   Wed Jan 5 01:09:14 1994 +0000
-   :
+   : 
    :       Added at/atrm/atq/batch from Linux as hacked by Chris Demetriou.
    #+END_QUOTE
 
@@ -307,20 +307,20 @@
 
    #+BEGIN_QUOTE
    : 15.01.1992, Thomas Koenig
-   :
+   : 
    : Fixed a bug combination in at/atrun which meant that files could
    : be deleted before being executed, now fiddling with the x - bit
    : (for execution) and the r - bit (for deletion).
-   :
+   : 
    : Added -d, -l and -q options with handling.
-   :
+   : 
    : 16.01.1992, Thomas Koenig
-   :
+   : 
    : Fixed a bug in atrun, where the wrong letters from the filename
    : was used for determining niceness.
-   :
+   : 
    : Added making a distribution, hopefully without clobbering too much...
-   :
+   : 
    : Released as 1.1.
    : ...
    #+END_QUOTE
@@ -368,17 +368,17 @@
     : Organization: Unisys Corporation SLC
     : Date: Tue, 11 Aug 1992 08:25:49 GMT
     : Lines: 16
-    :
+    : 
     : Taking a break from mailpak-1.3, I found I needed some periodic timer
     : execution stuff, and Paul Vixie's cron didn't quite fill the bill - I
     : needed something simpler ... something like the old /etc/cron that
     : ran stuff out of /usr/lib/crontab.  Oh, and while you're at it, Ed,
     : how about at and atrun, too?
-    :
+    : 
     : Well, folks, within the hour, it should be in tsx-11.mit.edu:/incoming/
     : periodic.tar.  No manpages, a simple README and install script, but
     : it works! :)
-    :
+    : 
     : Another quick hack from e...@apple.com :)
     : --
     : Ed Carp, N7EKG     e...@apple.com                801/538-0177
@@ -498,17 +498,17 @@
     : Date: Fri, 15 Jan 1993 12:34:51 GMT
     : Approved: linux-a...@tc.cornell.edu (Lars Wirzenius)
     : Lines: 15
-    :
+    : 
     : I have just uploaded at1-0.taz to tsx-11 and expect it to be in the
     : /pub/linux/sources/usr.bin directory fairly soon.
-    :
+    : 
     : It implements the at(1) and batch(1) commands, manpages are included.
     : People who have used the version of at(1) previously to be found at tsx-11
     : in a multi - user environment should update to this version, because of
     : a potential serious security hole in that version.
-    :
+    : 
     : Please send bug reports to ig...@rz.uni-karlsruhe.de.
-    :
+    : 
     : Happy hacking
     : --
     : Thomas Koenig, ig...@rz.uni-karlsruhe.de, ig25@dkauni2.bitnet
@@ -536,7 +536,7 @@
    : Organization: Computer Resources International A/S, CASE div.
    : Date: Tue, 20 Jul 1993 09:14:46 GMT
    : Lines: 23
-   :
+   : 
    : I have just switched over to Linux (SLS distribution) and I need the binaries
    : for at and atrun. I looked into several FTP sites, but I found only the sources.
    : The problem is that I cannot install gcc etc. until I get a bigger disk (the
@@ -544,15 +544,15 @@
    : so that I have no possiblity to compile the sources. The machine is an AT/386SX-40
    : with 4 Mbytes RAM. I have replaced its old 286 motherboard last week and I decided
    : to choose Linux as a replacement for the Minix OS I had used before.
-   :
+   : 
    : Otherwise the installation went without problems. I have replaced the smail package
    : from the distribution with sendmail-5.65+IDA last evening - it took only 30 minutes
    : to unpack and configure it...
-   :
+   : 
    : Thanks,
-   :
+   : 
    : Long Haired Nick
-   :
+   : 
    : ---
    : Nick Sandru - System administrator   | e-mail: n...@csd.cri.dk         (office)
    : Columbus Space Station SDE Project   |         n...@sandes.cri.dk      (home)
@@ -580,10 +580,10 @@
     : Date: Wed, 21 Jul 1993 17:33:46 GMT
     : Message-ID: <1993Jul21.173346.1548@skyjump.nbg.sub.org>
     : Lines: 9
-    :
+    : 
     : Is there no 'at' command under Linux (SLS1.02).
     : I can't find it.
-    :
+    : 
     : Thanks for help (please by mail)
     :      Achim
     : --
@@ -604,12 +604,12 @@
     : X-Newsreader: TIN [version 1.1 PL8]
     : Message-ID: <CAKvGH.7xC@khijol.uucp>
     : Lines: 12
-    :
+    : 
     : Achim Bursian (ac...@skyjump.nbg.sub.org) wrote:
-    :
+    : 
     : : Is there no 'at' command under Linux (SLS1.02).
     : : I can't find it.
-    :
+    : 
     : Yes, there is.  I wrote one (along with atrun), someone posted a couple of
     : patches to it.  I think you can find it over on tsx-11.
     : --
@@ -650,10 +650,10 @@
     : Keywords: Linux, SVID
     : Followup-To: comp.os.linux
     : Lines: 33
-    :
+    : 
     : Missing commands in SLS 1.02.
     : Mention by Stephen R. Bourne in "the UNIX System V enviroment"
-    :
+    : 
     : adb	- absolute debug
     : at,batch	- execure commands at a later time
     : cb	- C program beautifier
@@ -672,13 +672,13 @@
     : troff	- text formatting and typesetting
     : tsort	- topological sort
     : units	- conversion program
-    :
+    : 
     : Are this missing or unimplemented? Should this be links from
     : GNU-variants?
-    :
+    : 
     : ##>  Petter Reinholdtsen  <##
-    :
-    :
+    : 
+    : 
     : --
     : ##>  Petter Reinholdtsen <## | pet...@stud.cs.uit.no
     : Skolegata 7                  | Petter Reinholdtsen at 2:502/802.153
@@ -700,18 +700,18 @@
     : References: <1993Aug11.200314.21235@news.uit.no>
     : Date: Thu, 12 Aug 93 01:24:39 GMT
     : Lines: 72
-    :
+    : 
     : In article <1993Aug11....@news.uit.no>,
     : Petter Reinholdtsen <pet...@stud.cs.uit.no> wrote:
     : >Missing commands in SLS 1.02.
     : >Mention by Stephen R. Bourne in "the UNIX System V enviroment"
-    :
+    : 
     : >adb	- absolute debug
-    :
+    : 
     : A subset of gdb perhaps? Same goes for sdb.
-    :
+    : 
     : >at,batch	- execure commands at a later time
-    :
+    : 
     : Yeah cron is missing from MCC as well...no doubt its out there somewhere.
 
     [Message truncated]
@@ -731,17 +731,17 @@
     : Organization: Quay Financial Software
     : X-Newsreader: TIN [version 1.2 PL0]
     : Lines: 57
-    :
+    : 
     : Petter Reinholdtsen (pet...@stud.cs.uit.no) wrote:
     : : Missing commands in SLS 1.02.
     : : Mention by Stephen R. Bourne in "the UNIX System V enviroment"
-    :
+    : 
     : : adb	- absolute debug
-    :
+    : 
     : See gdb?
-    :
+    : 
     : : at,batch	- execure commands at a later time
-    :
+    : 
     : Available on sunsite.
 
     [Message truncated]
@@ -798,16 +798,16 @@
     : NNTP-Posting-Host: calypso.oit.unc.edu
     : Keywords: at, cron, daemon, scheduling, crond
     : Originator: mdw@sunSITE
-    :
+    : 
     : Hello, world;
-    :
+    : 
     : I've just uploaded at 2.3 to sunsite.unc.edu and tsx-11.mit.edu.
     : It's Yet Another Bugfix release; this time, it fixes the -f option which
     : was broken in 2.2, and also makes sure that environment variables are
     : actually exported.
-    :
+    : 
     : Again, here's the lsm entry:
-    :
+    : 
     : Begin2
     : Title        = at
     : Version      = at-2.3
@@ -833,7 +833,7 @@
     : Entered      = 16OCT93
     : EnteredBy    = Thomas Koenig
     : End
-    :
+    : 
     : --
     : Thomas Kvnig, ig...@rz.uni-karlsruhe.de, ig25@dkauni2.bitnet
     : The joy of engineering is to find a straight line on a double
