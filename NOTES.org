@@ -334,13 +334,13 @@
 
    The first eight dates in the 'Changelog' file are:
    :           "15.01.1992"   ==> really 1993, right?      (version 1.0)
-   :
+   : 
    :           "16.01.1992"   ==> really 1993, right?      (version 1.1)
-   :
+   : 
    :           "26.01.1992"   ==> really 1993, right?      (version 1.1a)
-   :
+   : 
    :           "14.04.1992"   ==> really 1993, right?      (version 1.2)
-   :
+   : 
    :           "12.09.1993"   ==> correct as is (I think)
    :           "13.09.1993"   ==> correct as is (I think)
    :           "18.09.1993"   ==> correct as is (I think)
