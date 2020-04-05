@@ -300,10 +300,10 @@
    further.
 
    This is interesting because the two oldest entries in the 'Changelog' file
-   are from mid-January 1992. If those dates are correct, then Thomas Koenig's
-   at-1.1 release predates Ed Carp's 1992-08-11 announcement post to
-   comp.os.linux (see further down below) by 6 months (which was previously
-   the oldest thing I had found relating to at(1) on Linux).
+   are from +mid-January 1992. If those dates are correct, then Thomas Koenig's+
+   +at-1.1 release predates Ed Carp's 1992-08-11 announcement post to+
+   +comp.os.linux (see further down below) by 6 months (which was previously+
+   +the oldest thing I had found relating to at(1) on Linux).+
 
    #+BEGIN_QUOTE
    : 15.01.1992, Thomas Koenig
@@ -324,6 +324,27 @@
    : Released as 1.1.
    : ...
    #+END_QUOTE
+
+   _UPDATE:_ I have since come to believe that the year portion of the first
+   four dates in the 'Changelog' file in the 'at-2.5.tar.gz' archive are
+   actually typos in that they indicate "1992" rather than "1993". If they are
+   interpretted as "1993", then the dates in the file line up nicely with the
+   various 'at' release announcement messages posted to comp.os.linux.announce
+   throughout 1993.
+
+   The first eight dates in the 'Changelog' file are:
+   :           "15.01.1992"   ==> really 1993, right?      (version 1.0)
+   :
+   :           "16.01.1992"   ==> really 1993, right?      (version 1.1)
+   :
+   :           "26.01.1992"   ==> really 1993, right?      (version 1.1a)
+   :
+   :           "14.04.1992"   ==> really 1993, right?      (version 1.2)
+   :
+   :           "12.09.1993"   ==> correct as is (I think)
+   :           "13.09.1993"   ==> correct as is (I think)
+   :           "18.09.1993"   ==> correct as is (I think)
+   :           "29.09.1993"   ==> correct as is (I think)  (version 2.0)
 
 
 ** 1992-08-11: comp.os.linux thread (1 msg): "/bin/at, /usr/lib/atrun, & /etc/cron"
